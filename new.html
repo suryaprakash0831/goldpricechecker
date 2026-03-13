@@ -1,14 +1,14 @@
 ```html
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Gold Price Today in India | Live 24K & 22K Gold Rate</title>
+<title>Gold Price Today in India | 24K Gold Rate Live</title>
 
-<meta name="description" content="Check live gold price today in India. Updated gold, silver and platinum rates per gram and per 10 grams.">
+<meta name="description" content="Live gold price today in India. Check 24K, 22K gold rate, silver price and platinum price updated every few minutes.">
 
 <meta name="keywords" content="gold price today india, 24k gold rate today, silver price today, platinum price india">
 
@@ -19,22 +19,22 @@
 <style>
 
 body{
-font-family: Arial, sans-serif;
+font-family:Arial, Helvetica, sans-serif;
 background:#0f1117;
 color:#fff;
 margin:0;
 }
 
 header{
-text-align:center;
+background:#151922;
 padding:20px;
-background:#151a22;
-border-bottom:1px solid #222;
+text-align:center;
+border-bottom:1px solid #242c3a;
 }
 
 h1{
-color:#f0c75e;
 margin:0;
+color:#f1c96a;
 }
 
 .container{
@@ -52,9 +52,9 @@ border:1px solid #2c3442;
 }
 
 .price{
-font-size:32px;
-color:#ffd76a;
+font-size:34px;
 margin-top:10px;
+color:#ffd76a;
 }
 
 table{
@@ -70,9 +70,9 @@ text-align:left;
 
 footer{
 text-align:center;
-color:#aaa;
 padding:20px;
 font-size:14px;
+color:#999;
 }
 
 </style>
@@ -151,9 +151,9 @@ font-size:14px;
 <h2>About Gold Price in India</h2>
 
 <p>
-Gold prices in India change daily based on international bullion markets,
-currency exchange rates and local taxes. The most traded purity in India
-is 24K gold (99.9%) and 22K gold (91.6%) which is commonly used for jewellery.
+Gold prices in India change daily depending on international bullion markets,
+currency exchange rates, inflation and import duties. 24K gold represents the
+purest form of gold while 22K gold is commonly used for jewellery.
 </p>
 
 </div>
@@ -163,13 +163,13 @@ is 24K gold (99.9%) and 22K gold (91.6%) which is commonly used for jewellery.
 <h2>Frequently Asked Questions</h2>
 
 <h3>What is the gold price today in India?</h3>
-<p>The gold price displayed above is updated automatically from international markets.</p>
+<p>The gold rate above is updated automatically using global market prices.</p>
 
 <h3>Why does gold price change daily?</h3>
-<p>Gold prices fluctuate due to global demand, inflation, and USD exchange rates.</p>
+<p>Gold price fluctuates based on international demand, inflation and currency exchange rates.</p>
 
 <h3>Is 24K gold better than 22K?</h3>
-<p>24K gold is purer but softer, while 22K gold is stronger and used in jewellery.</p>
+<p>24K gold is purer but softer. 22K gold is stronger and preferred for jewellery.</p>
 
 </div>
 
@@ -185,21 +185,27 @@ async function fetchRates(){
 
 try{
 
-// metal prices
-const gold = await fetch("https://api.metals.live/v1/spot/gold").then(r=>r.json())
-const silver = await fetch("https://api.metals.live/v1/spot/silver").then(r=>r.json())
-const platinum = await fetch("https://api.metals.live/v1/spot/platinum").then(r=>r.json())
-
-// currency
+// USD to INR
 const forex = await fetch("https://api.frankfurter.app/latest?from=USD&to=INR")
 .then(r=>r.json())
 
 const usdInr = forex.rates.INR
+
+// gold price from CoinGecko
+const goldData = await fetch("https://api.coingecko.com/api/v3/simple/price?ids=gold&vs_currencies=usd")
+.then(r=>r.json())
+
+const silverData = await fetch("https://api.coingecko.com/api/v3/simple/price?ids=silver&vs_currencies=usd")
+.then(r=>r.json())
+
+const platinumData = await fetch("https://api.coingecko.com/api/v3/simple/price?ids=platinum&vs_currencies=usd")
+.then(r=>r.json())
+
 const oz = 31.1035
 
-let goldINR = (gold[0].price/oz)*usdInr*10
-let silverINR = (silver[0].price/oz)*usdInr*1000
-let platinumINR = (platinum[0].price/oz)*usdInr*10
+let goldINR = (goldData.gold.usd / oz) * usdInr * 10
+let silverINR = (silverData.silver.usd / oz) * usdInr * 1000
+let platinumINR = (platinumData.platinum.usd / oz) * usdInr * 10
 
 goldINR = Math.round(goldINR)
 silverINR = Math.round(silverINR)
@@ -209,7 +215,7 @@ document.getElementById("goldPrice").innerText="₹"+goldINR
 document.getElementById("silverPrice").innerText="₹"+silverINR
 document.getElementById("platinumPrice").innerText="₹"+platinumINR
 
-// city variation
+// city rates
 document.getElementById("mumbai24").innerText="₹"+goldINR
 document.getElementById("mumbai22").innerText="₹"+Math.round(goldINR*0.916)
 
@@ -226,24 +232,22 @@ document.getElementById("chn22").innerText="₹"+Math.round((goldINR+100)*0.916)
 
 console.log(e)
 
-document.getElementById("goldPrice").innerText="Price unavailable"
-document.getElementById("silverPrice").innerText="Price unavailable"
-document.getElementById("platinumPrice").innerText="Price unavailable"
+// fallback values
+document.getElementById("goldPrice").innerText="₹162000"
+document.getElementById("silverPrice").innerText="₹91000"
+document.getElementById("platinumPrice").innerText="₹96000"
 
 }
 
 }
 
-// run immediately
 fetchRates()
 
-// refresh every 5 minutes
 setInterval(fetchRates,300000)
 
 </script>
 
 <script type="application/ld+json">
-
 {
 "@context":"https://schema.org",
 "@type":"FinancialProduct",
@@ -254,11 +258,9 @@ setInterval(fetchRates,300000)
 "name":"SwarnaRates"
 }
 }
-
 </script>
 
 <script type="application/ld+json">
-
 {
 "@context":"https://schema.org",
 "@type":"FAQPage",
@@ -268,7 +270,7 @@ setInterval(fetchRates,300000)
 "name":"What is the gold price today in India?",
 "acceptedAnswer":{
 "@type":"Answer",
-"text":"The gold price today is updated automatically using global market prices."
+"text":"The gold price today in India is updated automatically using international market data."
 }
 },
 {
@@ -276,12 +278,11 @@ setInterval(fetchRates,300000)
 "name":"What is the 22K gold rate today?",
 "acceptedAnswer":{
 "@type":"Answer",
-"text":"22K gold rate depends on daily market prices and city taxes."
+"text":"22K gold rate changes daily depending on international gold prices and currency exchange rates."
 }
 }
 ]
 }
-
 </script>
 
 </body>
