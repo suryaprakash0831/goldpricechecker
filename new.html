@@ -1,16 +1,16 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Gold Price Today in India | 24K, 22K Gold Rate Live</title>
+<title>Gold Price Today in India | Live 24K & 22K Gold Rate</title>
 
-<meta name="description" content="Live gold price today in India. Check 24K, 22K gold rate per gram and per 10 grams in major cities including Mumbai, Bangalore, Delhi and Chennai. Updated every few minutes.">
+<meta name="description" content="Check live gold price today in India. Updated gold, silver and platinum rates per gram and per 10 grams.">
 
-<meta name="keywords" content="gold price today india, 24k gold rate today, gold price per gram india, silver price today, platinum price india">
+<meta name="keywords" content="gold price today india, 24k gold rate today, silver price today, platinum price india">
 
 <meta name="robots" content="index, follow">
 
@@ -19,21 +19,22 @@
 <style>
 
 body{
-font-family:Arial, Helvetica, sans-serif;
-background:#0e0f13;
-color:white;
+font-family: Arial, sans-serif;
+background:#0f1117;
+color:#fff;
 margin:0;
 }
 
 header{
-background:#11141a;
-padding:20px;
 text-align:center;
+padding:20px;
+background:#151a22;
 border-bottom:1px solid #222;
 }
 
 h1{
-color:#e8c66a;
+color:#f0c75e;
+margin:0;
 }
 
 .container{
@@ -43,11 +44,11 @@ padding:20px;
 }
 
 .card{
-background:#161a22;
-padding:25px;
+background:#161b22;
 border-radius:10px;
+padding:25px;
 margin-bottom:20px;
-border:1px solid #262c38;
+border:1px solid #2c3442;
 }
 
 .price{
@@ -61,20 +62,16 @@ width:100%;
 border-collapse:collapse;
 }
 
-td,th{
+th,td{
 padding:12px;
-border-bottom:1px solid #2a2f3b;
+border-bottom:1px solid #2b3240;
 text-align:left;
-}
-
-.city{
-color:#ddd;
 }
 
 footer{
 text-align:center;
+color:#aaa;
 padding:20px;
-color:#999;
 font-size:14px;
 }
 
@@ -85,46 +82,29 @@ font-size:14px;
 <body>
 
 <header>
-
 <h1>SwarnaRates</h1>
 <p>Live Gold Price Today in India</p>
-
 </header>
 
 <div class="container">
 
 <div class="card">
-
-<h2>Gold Price Today</h2>
-
-<div class="price" id="goldPrice">Loading...</div>
-
-<p>24K gold price per 10 grams in India.</p>
-
+<h2>Gold Price Today (24K)</h2>
+<div class="price" id="goldPrice">Updating price...</div>
+<p>Price per 10 grams</p>
 </div>
 
-
 <div class="card">
-
 <h2>Silver Price Today</h2>
-
-<div class="price" id="silverPrice">Loading...</div>
-
-<p>Silver price per kilogram in India.</p>
-
+<div class="price" id="silverPrice">Updating price...</div>
+<p>Price per kilogram</p>
 </div>
-
 
 <div class="card">
-
 <h2>Platinum Price Today</h2>
-
-<div class="price" id="platinumPrice">Loading...</div>
-
-<p>Platinum price per 10 grams in India.</p>
-
+<div class="price" id="platinumPrice">Updating price...</div>
+<p>Price per 10 grams</p>
 </div>
-
 
 <div class="card">
 
@@ -132,87 +112,71 @@ font-size:14px;
 
 <table>
 
-<thead>
-
 <tr>
 <th>City</th>
 <th>24K Gold (10g)</th>
 <th>22K Gold (10g)</th>
 </tr>
 
-</thead>
-
-<tbody id="cityRates">
-
 <tr>
-<td class="city">Mumbai</td>
-<td>₹162,220</td>
-<td>₹148,700</td>
+<td>Mumbai</td>
+<td id="mumbai24">--</td>
+<td id="mumbai22">--</td>
 </tr>
 
 <tr>
-<td class="city">Bangalore</td>
-<td>₹162,290</td>
-<td>₹148,930</td>
+<td>Bangalore</td>
+<td id="blr24">--</td>
+<td id="blr22">--</td>
 </tr>
 
 <tr>
-<td class="city">Delhi</td>
-<td>₹162,370</td>
-<td>₹148,850</td>
+<td>Delhi</td>
+<td id="delhi24">--</td>
+<td id="delhi22">--</td>
 </tr>
 
 <tr>
-<td class="city">Chennai</td>
-<td>₹163,310</td>
-<td>₹149,690</td>
+<td>Chennai</td>
+<td id="chn24">--</td>
+<td id="chn22">--</td>
 </tr>
-
-</tbody>
 
 </table>
 
 </div>
-
 
 <div class="card">
 
 <h2>About Gold Price in India</h2>
 
 <p>
-
-Gold prices in India change daily depending on international gold markets, the US dollar rate, crude oil prices, and import duties. 
-
-The most commonly traded gold purity in India includes 24K gold (99.9%) and 22K gold (91.6%) used for jewellery.
-
-Cities like Mumbai, Bangalore, Delhi, and Chennai have slight variations in gold rates due to transportation costs and local taxes.
-
+Gold prices in India change daily based on international bullion markets,
+currency exchange rates and local taxes. The most traded purity in India
+is 24K gold (99.9%) and 22K gold (91.6%) which is commonly used for jewellery.
 </p>
 
 </div>
-
 
 <div class="card">
 
 <h2>Frequently Asked Questions</h2>
 
 <h3>What is the gold price today in India?</h3>
-<p>The current 24K gold price is shown above and updated automatically using international market prices.</p>
+<p>The gold price displayed above is updated automatically from international markets.</p>
 
 <h3>Why does gold price change daily?</h3>
-<p>Gold price fluctuates due to global demand, currency exchange rates, interest rates, and geopolitical events.</p>
+<p>Gold prices fluctuate due to global demand, inflation, and USD exchange rates.</p>
 
 <h3>Is 24K gold better than 22K?</h3>
-<p>24K gold is purer but softer. 22K gold is commonly used in jewellery because it is more durable.</p>
+<p>24K gold is purer but softer, while 22K gold is stronger and used in jewellery.</p>
 
 </div>
 
 </div>
 
 <footer>
-
-<p>© 2026 SwarnaRates | Live Gold Price India</p>
-
+© 2026 SwarnaRates | Live Gold Price India
 </footer>
 
 <script>
@@ -221,81 +185,105 @@ async function fetchRates(){
 
 try{
 
-const gold=await fetch("https://api.metals.live/v1/spot/gold").then(r=>r.json())
-const silver=await fetch("https://api.metals.live/v1/spot/silver").then(r=>r.json())
-const platinum=await fetch("https://api.metals.live/v1/spot/platinum").then(r=>r.json())
+// metal prices
+const gold = await fetch("https://api.metals.live/v1/spot/gold").then(r=>r.json())
+const silver = await fetch("https://api.metals.live/v1/spot/silver").then(r=>r.json())
+const platinum = await fetch("https://api.metals.live/v1/spot/platinum").then(r=>r.json())
 
-const forex=await fetch("https://api.frankfurter.app/latest?from=USD&to=INR").then(r=>r.json())
+// currency
+const forex = await fetch("https://api.frankfurter.app/latest?from=USD&to=INR")
+.then(r=>r.json())
 
-const usdInr=forex.rates.INR
+const usdInr = forex.rates.INR
+const oz = 31.1035
 
-const oz=31.1035
+let goldINR = (gold[0].price/oz)*usdInr*10
+let silverINR = (silver[0].price/oz)*usdInr*1000
+let platinumINR = (platinum[0].price/oz)*usdInr*10
 
-let goldINR=(gold[0].price/oz)*usdInr*10
-let silverINR=(silver[0].price/oz)*usdInr*1000
-let platinumINR=(platinum[0].price/oz)*usdInr*10
+goldINR = Math.round(goldINR)
+silverINR = Math.round(silverINR)
+platinumINR = Math.round(platinumINR)
 
-document.getElementById("goldPrice").innerText="₹"+Math.round(goldINR)
-document.getElementById("silverPrice").innerText="₹"+Math.round(silverINR)
-document.getElementById("platinumPrice").innerText="₹"+Math.round(platinumINR)
+document.getElementById("goldPrice").innerText="₹"+goldINR
+document.getElementById("silverPrice").innerText="₹"+silverINR
+document.getElementById("platinumPrice").innerText="₹"+platinumINR
+
+// city variation
+document.getElementById("mumbai24").innerText="₹"+goldINR
+document.getElementById("mumbai22").innerText="₹"+Math.round(goldINR*0.916)
+
+document.getElementById("blr24").innerText="₹"+(goldINR+50)
+document.getElementById("blr22").innerText="₹"+Math.round((goldINR+50)*0.916)
+
+document.getElementById("delhi24").innerText="₹"+(goldINR+70)
+document.getElementById("delhi22").innerText="₹"+Math.round((goldINR+70)*0.916)
+
+document.getElementById("chn24").innerText="₹"+(goldINR+100)
+document.getElementById("chn22").innerText="₹"+Math.round((goldINR+100)*0.916)
 
 }catch(e){
 
 console.log(e)
 
-}
+document.getElementById("goldPrice").innerText="Price unavailable"
+document.getElementById("silverPrice").innerText="Price unavailable"
+document.getElementById("platinumPrice").innerText="Price unavailable"
 
 }
 
+}
+
+// run immediately
 fetchRates()
 
+// refresh every 5 minutes
 setInterval(fetchRates,300000)
 
 </script>
 
-
 <script type="application/ld+json">
 
 {
- "@context":"https://schema.org",
- "@type":"FinancialProduct",
- "name":"Gold Price Today India",
- "description":"Live gold price today in India including 24K and 22K gold rate updated automatically.",
- "provider":{
- "@type":"Organization",
- "name":"SwarnaRates"
- }
+"@context":"https://schema.org",
+"@type":"FinancialProduct",
+"name":"Gold Price Today India",
+"description":"Live gold price today in India including 24K and 22K gold rates.",
+"provider":{
+"@type":"Organization",
+"name":"SwarnaRates"
+}
 }
 
 </script>
 
-
 <script type="application/ld+json">
 
 {
- "@context":"https://schema.org",
- "@type":"FAQPage",
- "mainEntity":[
- {
- "@type":"Question",
- "name":"What is the gold price today in India?",
- "acceptedAnswer":{
- "@type":"Answer",
- "text":"The live gold price today is updated automatically using international gold markets."
- }
- },
- {
- "@type":"Question",
- "name":"What is the 22K gold rate today?",
- "acceptedAnswer":{
- "@type":"Answer",
- "text":"22K gold rate depends on city taxes and daily gold market fluctuations."
- }
- }
- ]
+"@context":"https://schema.org",
+"@type":"FAQPage",
+"mainEntity":[
+{
+"@type":"Question",
+"name":"What is the gold price today in India?",
+"acceptedAnswer":{
+"@type":"Answer",
+"text":"The gold price today is updated automatically using global market prices."
+}
+},
+{
+"@type":"Question",
+"name":"What is the 22K gold rate today?",
+"acceptedAnswer":{
+"@type":"Answer",
+"text":"22K gold rate depends on daily market prices and city taxes."
+}
+}
+]
 }
 
 </script>
 
 </body>
 </html>
+```
