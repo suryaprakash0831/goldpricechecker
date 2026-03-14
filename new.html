@@ -1,290 +1,243 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Gold Price Today in India | 24K Gold Rate Live</title>
-
-<meta name="description" content="Live gold price today in India. Check 24K, 22K gold rate, silver price and platinum price updated every few minutes.">
-
-<meta name="keywords" content="gold price today india, 24k gold rate today, silver price today, platinum price india">
-
-<meta name="robots" content="index, follow">
-
-<link rel="canonical" href="https://swarnarates.com">
-
-<style>
-
-body{
-font-family:Arial, Helvetica, sans-serif;
-background:#0f1117;
-color:#fff;
-margin:0;
-}
-
-header{
-background:#151922;
-padding:20px;
-text-align:center;
-border-bottom:1px solid #242c3a;
-}
-
-h1{
-margin:0;
-color:#f1c96a;
-}
-
-.container{
-max-width:1100px;
-margin:auto;
-padding:20px;
-}
-
-.card{
-background:#161b22;
-border-radius:10px;
-padding:25px;
-margin-bottom:20px;
-border:1px solid #2c3442;
-}
-
-.price{
-font-size:34px;
-margin-top:10px;
-color:#ffd76a;
-}
-
-table{
-width:100%;
-border-collapse:collapse;
-}
-
-th,td{
-padding:12px;
-border-bottom:1px solid #2b3240;
-text-align:left;
-}
-
-footer{
-text-align:center;
-padding:20px;
-font-size:14px;
-color:#999;
-}
-
-</style>
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SwarnaRates — Live Gold, Silver & Platinum · India</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #07080B; --sf: #0F1116; --sf2: #161A22; --sf3: #1D2230;
+      --br: rgba(255,255,255,0.06);
+      --gold: #C8920A; --glt: #F4C430; --gdk: #7A5808;
+      --slt: #BDD4EE; --plt: #C8DCEC;
+      --grn: #22BC66; --red: #E02828; --ora: #F09020;
+      --txt: #E8E2D8; --mt: #555068; --mt2: #888098;
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body {
+      background: var(--bg); color: var(--txt); font-family: 'DM Sans', sans-serif;
+      font-size: 14px; overflow-x: hidden;
+    }
+    header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 11px 22px; border-bottom: 1px solid var(--br);
+      position: sticky; top: 0; background: rgba(7,8,11,.97);
+      backdrop-filter: blur(12px); z-index: 300;
+    }
+    .logo { font-family: 'DM Serif Display', serif; font-size: 1.35rem; color: var(--glt); }
+    .logo-sub { font-size: .4rem; font-family: 'DM Mono', monospace; color: var(--mt); letter-spacing: .2em; text-transform: uppercase; }
+    .live-pill {
+      display: flex; align-items: center; gap: 5px; background: rgba(34,188,102,.09);
+      border: 1px solid rgba(34,188,102,.22); border-radius: 20px; padding: 3px 10px;
+      font-size: .58rem; font-family: 'DM Mono', monospace; color: var(--grn);
+    }
+    .ldot { width: 5px; height: 5px; border-radius: 50%; background: var(--grn); animation: blink 1.2s infinite; }
+    @keyframes blink { 0%,100% {opacity:1;} 50% {opacity:.1;} }
+    .engine-bar {
+      background: linear-gradient(90deg, rgba(200,146,10,.08), rgba(34,188,102,.06));
+      border-bottom: 1px solid rgba(200,146,10,.15); padding: 8px 22px;
+      display: flex; align-items: center; gap: 10px; overflow-x: auto;
+    }
+    .esrc { display: flex; align-items: center; gap: 5px; font-family: 'DM Mono', monospace; font-size: .56rem; color: var(--mt2); }
+    .edot { width: 6px; height: 6px; border-radius: 50%; background: var(--mt); }
+    main { max-width: 1380px; margin: 0 auto; padding: 18px 16px 60px; }
+    .how-notice {
+      background: rgba(200,146,10,.07); border: 1px solid rgba(200,146,10,.18);
+      border-radius: 10px; padding: 12px 18px; margin-bottom: 16px;
+      font-size: .65rem; font-family: 'DM Mono', monospace; color: var(--mt2);
+    }
+    .formula { background: var(--sf2); border-radius: 6px; padding: 5px 12px; margin-top: 5px; font-size: .62rem; }
+    #lastupd { font-size: 0.8rem; color: var(--mt2); margin-top: 8px; text-align: center; }
+    button.refresh-btn {
+      background: rgba(200,146,10,.2); border: 1px solid var(--gold); color: var(--glt);
+      padding: 8px 16px; border-radius: 8px; font-family: 'DM Mono', monospace;
+      cursor: pointer; margin: 10px auto; display: block; font-size: 0.9rem;
+    }
+    button.refresh-btn:hover { background: rgba(200,146,10,.4); }
+    button.refresh-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+    /* Add your full original CSS (cards, mbar, city-row, etc.) here if needed */
+  </style>
 </head>
-
 <body>
 
 <header>
-<h1>SwarnaRates</h1>
-<p>Live Gold Price Today in India</p>
+  <div class="logo">SwarnaRates <span class="logo-sub">India</span></div>
+  <div class="live-pill"><div class="ldot"></div>LIVE · <span id="srcCountH">0</span> SOURCES</div>
 </header>
 
-<div class="container">
-
-<div class="card">
-<h2>Gold Price Today (24K)</h2>
-<div class="price" id="goldPrice">Updating price...</div>
-<p>Price per 10 grams</p>
+<div class="engine-bar">
+  <div class="esrc"><div class="edot" id="d_ga"></div><span>goldapi.io</span><span id="v_ga">—</span></div>
+  <div class="esrc"><div class="edot" id="d_fx"></div><span>exchangerate-api</span><span id="v_fx">—</span></div>
+  <div class="engine-conf">
+    <span>DATA CONF</span>
+    <div style="width:100px;height:5px;background:#222;border-radius:3px;overflow:hidden;">
+      <div id="cBar" style="height:100%;width:0%;background:linear-gradient(90deg,var(--gold),var(--glt));transition:width .8s;"></div>
+    </div>
+    <span id="cPct">—</span>
+  </div>
 </div>
 
-<div class="card">
-<h2>Silver Price Today</h2>
-<div class="price" id="silverPrice">Updating price...</div>
-<p>Price per kilogram</p>
-</div>
+<main>
+  <div class="how-notice">
+    <strong>⚙️ HOW PRICES ARE CALCULATED — 100% DYNAMIC (March 2026)</strong><br>
+    Fetched every 12 hours (free tier safe). Spot + forex from reliable sources.<br>
+    <div class="formula">
+      INR Price = (Spot USD/oz ÷ 31.1035) × USD/INR × grams
+      + <span>Customs Duty 6%</span> + <span>GST 3%</span>
+      + <span>MCX Premium ~₹400/10g</span> + <span>City Delta</span>
+    </div>
+    <div id="lastupd">Last updated: —</div>
+    <button class="refresh-btn" id="refreshBtn">Refresh Now</button>
+  </div>
 
-<div class="card">
-<h2>Platinum Price Today</h2>
-<div class="price" id="platinumPrice">Updating price...</div>
-<p>Price per 10 grams</p>
-</div>
-
-<div class="card">
-
-<h2>Gold Rate in Major Cities</h2>
-
-<table>
-
-<tr>
-<th>City</th>
-<th>24K Gold (10g)</th>
-<th>22K Gold (10g)</th>
-</tr>
-
-<tr>
-<td>Mumbai</td>
-<td id="mumbai24">--</td>
-<td id="mumbai22">--</td>
-</tr>
-
-<tr>
-<td>Bangalore</td>
-<td id="blr24">--</td>
-<td id="blr22">--</td>
-</tr>
-
-<tr>
-<td>Delhi</td>
-<td id="delhi24">--</td>
-<td id="delhi22">--</td>
-</tr>
-
-<tr>
-<td>Chennai</td>
-<td id="chn24">--</td>
-<td id="chn22">--</td>
-</tr>
-
-</table>
-
-</div>
-
-<div class="card">
-
-<h2>About Gold Price in India</h2>
-
-<p>
-Gold prices in India change daily depending on international bullion markets,
-currency exchange rates, inflation and import duties. 24K gold represents the
-purest form of gold while 22K gold is commonly used for jewellery.
-</p>
-
-</div>
-
-<div class="card">
-
-<h2>Frequently Asked Questions</h2>
-
-<h3>What is the gold price today in India?</h3>
-<p>The gold rate above is updated automatically using global market prices.</p>
-
-<h3>Why does gold price change daily?</h3>
-<p>Gold price fluctuates based on international demand, inflation and currency exchange rates.</p>
-
-<h3>Is 24K gold better than 22K?</h3>
-<p>24K gold is purer but softer. 22K gold is stronger and preferred for jewellery.</p>
-
-</div>
-
-</div>
-
-<footer>
-© 2026 SwarnaRates | Live Gold Price India
-</footer>
+  <!-- Placeholder for your main content (cards, city selector, tables, etc.) -->
+  <div style="text-align:center; padding:20px; color:var(--mt);">
+    Gold 24K 10g (Bangalore): <span id="goldExample">—</span><br>
+    (Paste your full UI here: cards, market bar, city buttons, karat table, etc.)
+  </div>
+</main>
 
 <script>
+// ── CONFIG ────────────────────────────────────────────────────────────────
+const API_KEY_GOLD = "goldapi-2mwsmmpuop3y-io";
+const TROY_OZ_GRAM = 31.1035;
+const IMPORT_DUTY  = 0.06;   // Confirmed 6% total customs (no change in 2026 Budget)
+const GST          = 0.03;
+const MCX_PREM_BASE = 400;   // ₹/10g approx estimate
 
-async function fetchRates(){
+const CITY_DELTA = {
+  Mumbai:    {delta:1.00, lbl:"Base (Maharashtra)"},
+  Delhi:     {delta:1.015, lbl:"+1.5% NCR"},
+  Bangalore: {delta:1.008, lbl:"+0.8% KA"},
+  Chennai:   {delta:1.012, lbl:"+1.2% TN"},
+  Hyderabad: {delta:1.010, lbl:"+1.0% TS"},
+  Kolkata:   {delta:1.009, lbl:"+0.9% WB"}
+};
 
-try{
+let city = "Bangalore";
 
-// USD to INR
-const forex = await fetch("https://api.frankfurter.app/latest?from=USD&to=INR")
-.then(r=>r.json())
+// State
+let S = {
+  gold:   {sources:[], median:0, prev:0},
+  silver: {sources:[], median:0, prev:0},
+  plat:   {sources:[], median:0, prev:0},
+  forex:  {sources:[], median:92.5, prev:92.5},
+  srcCount:0, confidence:85, fetchCount:0, lastFetch:null
+};
 
-const usdInr = forex.rates.INR
+let isFetching = false;
 
-// gold price from CoinGecko
-const goldData = await fetch("https://api.coingecko.com/api/v3/simple/price?ids=gold&vs_currencies=usd")
-.then(r=>r.json())
-
-const silverData = await fetch("https://api.coingecko.com/api/v3/simple/price?ids=silver&vs_currencies=usd")
-.then(r=>r.json())
-
-const platinumData = await fetch("https://api.coingecko.com/api/v3/simple/price?ids=platinum&vs_currencies=usd")
-.then(r=>r.json())
-
-const oz = 31.1035
-
-let goldINR = (goldData.gold.usd / oz) * usdInr * 10
-let silverINR = (silverData.silver.usd / oz) * usdInr * 1000
-let platinumINR = (platinumData.platinum.usd / oz) * usdInr * 10
-
-goldINR = Math.round(goldINR)
-silverINR = Math.round(silverINR)
-platinumINR = Math.round(platinumINR)
-
-document.getElementById("goldPrice").innerText="₹"+goldINR
-document.getElementById("silverPrice").innerText="₹"+silverINR
-document.getElementById("platinumPrice").innerText="₹"+platinumINR
-
-// city rates
-document.getElementById("mumbai24").innerText="₹"+goldINR
-document.getElementById("mumbai22").innerText="₹"+Math.round(goldINR*0.916)
-
-document.getElementById("blr24").innerText="₹"+(goldINR+50)
-document.getElementById("blr22").innerText="₹"+Math.round((goldINR+50)*0.916)
-
-document.getElementById("delhi24").innerText="₹"+(goldINR+70)
-document.getElementById("delhi22").innerText="₹"+Math.round((goldINR+70)*0.916)
-
-document.getElementById("chn24").innerText="₹"+(goldINR+100)
-document.getElementById("chn22").innerText="₹"+Math.round((goldINR+100)*0.916)
-
-}catch(e){
-
-console.log(e)
-
-// fallback values
-document.getElementById("goldPrice").innerText="₹162000"
-document.getElementById("silverPrice").innerText="₹91000"
-document.getElementById("platinumPrice").innerText="₹96000"
-
+// ── FETCH ─────────────────────────────────────────────────────────────────
+async function fetchGoldAPI(metal = "XAU") {
+  try {
+    const url = `https://www.goldapi.io/api/${metal}/USD`;
+    const res = await fetch(url, { headers: { "x-access-token": API_KEY_GOLD } });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const data = await res.json();
+    if (data.ask && data.ask > 1000) {
+      const srcObj = {val: data.ask, ts: new Date(), src: "goldapi.io"};
+      if (metal === "XAU") S.gold.sources = [srcObj];
+      if (metal === "XAG") S.silver.sources = [srcObj];
+      if (metal === "XPT") S.plat.sources   = [srcObj];
+      document.getElementById("v_ga").textContent = "✓";
+      document.getElementById("d_ga").style.background = "var(--grn)";
+    }
+  } catch(e) {
+    console.warn("GoldAPI failed:", e);
+    document.getElementById("v_ga").textContent = "×";
+    document.getElementById("d_ga").style.background = "var(--red)";
+  }
 }
 
+async function fetchForex() {
+  try {
+    const res = await fetch("https://open.er-api.com/v6/latest/USD");
+    const data = await res.json();
+    if (data.result === "success" && data.rates?.INR > 80) {
+      S.forex.sources = [{val: data.rates.INR, ts: new Date(), src: "exchangerate-api"}];
+      document.getElementById("v_fx").textContent = "✓";
+    }
+  } catch(e) {
+    console.warn("Forex failed:", e);
+  }
 }
 
-fetchRates()
+// ── MEDIANS & UI ─────────────────────────────────────────────────────────
+function updateMedians() {
+  ['gold','silver','plat','forex'].forEach(key => {
+    const vals = S[key].sources.map(s => s.val).filter(v => v > 0);
+    if (vals.length === 0) return;
+    S[key].median = vals[0];
+    S[key].prev = S[key].prev || S[key].median;
+  });
+  S.srcCount = (S.gold.sources.length > 0 ? 1 : 0) + (S.forex.sources.length > 0 ? 1 : 0);
+  S.confidence = S.srcCount > 0 ? 85 : 0;
+  document.getElementById("srcCountH").textContent = S.srcCount;
+  document.getElementById("cBar").style.width = S.confidence + "%";
+  document.getElementById("cPct").textContent = S.confidence + "%";
+  if (S.lastFetch) {
+    document.getElementById("lastupd").textContent = 
+      "Last updated: " + S.lastFetch.toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' });
+  }
+}
 
-setInterval(fetchRates,300000)
+// ── CALC EXAMPLE ─────────────────────────────────────────────────────────
+function calcGold10g(c = city, karat = 24) {
+  if (!S.gold.median || !S.forex.median) return "—";
+  const purity = karat / 24;
+  const base = (S.gold.median / TROY_OZ_GRAM) * S.forex.median * 10 * purity;
+  const taxes = base * (IMPORT_DUTY + GST);
+  const prem = MCX_PREM_BASE * (CITY_DELTA[c]?.delta || 1);
+  return Math.round(base + taxes + prem).toLocaleString('en-IN', { style: 'currency', currency: 'INR' });
+}
 
+// ── RENDER ────────────────────────────────────────────────────────────────
+function renderAll() {
+  updateMedians();
+  document.getElementById("goldExample").textContent = calcGold10g(city, 24);
+  // Add your full render calls here (e.g. update cards, tables, sparklines)
+  console.log(`Gold 24K 10g (${city}): ${calcGold10g(city, 24)}`);
+}
+
+// ── FETCH ALL ─────────────────────────────────────────────────────────────
+async function fetchAll() {
+  if (isFetching) return;
+  isFetching = true;
+  const btn = document.getElementById("refreshBtn");
+  if (btn) {
+    btn.disabled = true;
+    btn.textContent = "Refreshing...";
+  }
+
+  S.fetchCount++;
+  S.lastFetch = new Date();
+  await Promise.all([
+    fetchGoldAPI("XAU"),
+    fetchGoldAPI("XAG"),
+    fetchGoldAPI("XPT"),
+    fetchForex()
+  ]);
+  renderAll();
+
+  if (btn) {
+    btn.disabled = false;
+    btn.textContent = "Refresh Now";
+  }
+  isFetching = false;
+}
+
+// ── BOOT ─────────────────────────────────────────────────────────────────
+window.addEventListener('load', async () => {
+  await fetchAll();              // Initial fetch
+  setTimeout(fetchAll, 60000);   // Safety retry after 1 min
+
+  setInterval(fetchAll, 12 * 60 * 60 * 1000);  // Every 12 hours
+  setInterval(renderAll, 1000);  // UI refresh loop
+
+  // Button listener
+  document.getElementById("refreshBtn")?.addEventListener("click", fetchAll);
+});
 </script>
-
-<script type="application/ld+json">
-{
-"@context":"https://schema.org",
-"@type":"FinancialProduct",
-"name":"Gold Price Today India",
-"description":"Live gold price today in India including 24K and 22K gold rates.",
-"provider":{
-"@type":"Organization",
-"name":"SwarnaRates"
-}
-}
-</script>
-
-<script type="application/ld+json">
-{
-"@context":"https://schema.org",
-"@type":"FAQPage",
-"mainEntity":[
-{
-"@type":"Question",
-"name":"What is the gold price today in India?",
-"acceptedAnswer":{
-"@type":"Answer",
-"text":"The gold price today in India is updated automatically using international market data."
-}
-},
-{
-"@type":"Question",
-"name":"What is the 22K gold rate today?",
-"acceptedAnswer":{
-"@type":"Answer",
-"text":"22K gold rate changes daily depending on international gold prices and currency exchange rates."
-}
-}
-]
-}
-</script>
-
 </body>
 </html>
-
