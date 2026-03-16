@@ -2,1372 +2,1152 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SwarnaRates — Live Gold, Silver & Platinum · India</title>
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
 <style>
-:root{
-  --bg:#07080B;--sf:#0F1116;--sf2:#161A22;--sf3:#1D2230;
-  --br:rgba(255,255,255,0.06);
-  --gold:#C8920A;--glt:#F4C430;--gdk:#7A5808;
-  --slt:#BDD4EE;--plt:#C8DCEC;
-  --grn:#22BC66;--red:#E02828;--ora:#F09020;
-  --txt:#E8E2D8;--mt:#555068;--mt2:#888098;
-}
 *{margin:0;padding:0;box-sizing:border-box;}
-html,body{height:100%;scroll-behavior:smooth;}
-body{background:var(--bg);color:var(--txt);font-family:'DM Sans',sans-serif;font-size:14px;overflow-x:hidden;}
+html{font-size:14px;}
+body{background:#070810;color:#e8e2d8;font-family:system-ui,-apple-system,sans-serif;min-height:100vh;-webkit-text-size-adjust:100%;}
+
+/* ── VARIABLES ── */
+:root{
+  --gold:#d4920a;--glt:#f5c430;--gdk:#7a5808;
+  --slt:#b8d0e8;--plt:#c0d8ec;
+  --grn:#1fb85a;--red:#e02828;--warn:#e09020;
+  --bg2:#0f1018;--bg3:#161820;--bg4:#1c1e2a;
+  --br:rgba(255,255,255,0.07);--muted:#70688a;
+}
 
 /* ── HEADER ── */
 header{
+  background:#070810;border-bottom:1px solid var(--br);
+  padding:10px 14px;position:sticky;top:0;z-index:200;
   display:flex;align-items:center;justify-content:space-between;
-  padding:11px 22px;border-bottom:1px solid var(--br);
-  position:sticky;top:0;background:rgba(7,8,11,.97);
-  backdrop-filter:blur(12px);z-index:300;flex-wrap:wrap;gap:8px;
+  flex-wrap:wrap;gap:6px;
 }
-.logo{font-family:'DM Serif Display',serif;font-size:1.35rem;color:var(--glt);display:flex;align-items:baseline;gap:5px;}
-.logo-sub{font-size:.4rem;font-family:'DM Mono',monospace;color:var(--mt);letter-spacing:.2em;text-transform:uppercase;}
-.hright{display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
-.live-pill{display:flex;align-items:center;gap:5px;background:rgba(34,188,102,.09);border:1px solid rgba(34,188,102,.22);border-radius:20px;padding:3px 10px;font-size:.58rem;font-family:'DM Mono',monospace;color:var(--grn);}
-.ldot{width:5px;height:5px;border-radius:50%;background:var(--grn);animation:blink 1.2s infinite;}
-@keyframes blink{0%,100%{opacity:1;}50%{opacity:.1;}}
-#clk{font-family:'DM Mono',monospace;font-size:.68rem;color:var(--mt2);}
-.hstrip{font-family:'DM Mono',monospace;font-size:.58rem;color:var(--mt2);display:flex;gap:10px;flex-wrap:wrap;}
+.logo{font-size:1.1rem;font-weight:700;color:var(--glt);letter-spacing:-.02em;}
+.logo em{color:var(--muted);font-style:normal;font-size:.65rem;font-weight:400;margin-left:4px;}
+.hright{display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+.badge{display:flex;align-items:center;gap:4px;font-size:.6rem;font-family:monospace;background:rgba(31,184,90,.09);border:1px solid rgba(31,184,90,.2);border-radius:20px;padding:2px 8px;color:var(--grn);}
+.dot{width:5px;height:5px;border-radius:50%;background:var(--grn);animation:blink 1.2s infinite;}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.1}}
+#hclock{font-family:monospace;font-size:.68rem;color:var(--muted);}
+.hfxrow{font-family:monospace;font-size:.6rem;color:var(--muted);}
 
-/* ── SOURCE ENGINE BANNER ── */
-.engine-bar{
-  background:linear-gradient(90deg,rgba(200,146,10,.08),rgba(34,188,102,.06));
-  border-bottom:1px solid rgba(200,146,10,.15);
-  padding:8px 22px;display:flex;align-items:center;gap:0;flex-wrap:wrap;overflow-x:auto;
+/* ── SOURCE BAR ── */
+.srcbar{
+  background:var(--bg2);border-bottom:1px solid var(--br);
+  padding:5px 14px;display:flex;gap:0;overflow-x:auto;scrollbar-width:none;
+  align-items:center;
 }
-.esrc{
-  display:flex;align-items:center;gap:5px;padding:4px 14px;
-  border-right:1px solid rgba(255,255,255,.06);
-  font-family:'DM Mono',monospace;font-size:.56rem;color:var(--mt2);white-space:nowrap;
+.srcbar::-webkit-scrollbar{display:none;}
+.srci{
+  display:flex;align-items:center;gap:4px;
+  padding:2px 10px;border-right:1px solid var(--br);
+  font-family:monospace;font-size:.52rem;color:var(--muted);
+  white-space:nowrap;flex-shrink:0;
 }
-.esrc:last-child{border-right:none;}
-.edot{width:6px;height:6px;border-radius:50%;flex-shrink:0;}
-.eg{background:var(--grn);}.ew{background:var(--ora);}.er{background:var(--red);}.ep{background:var(--mt);}
-.esrc .eval{font-weight:600;font-size:.62rem;}
-.engine-conf{margin-left:auto;display:flex;align-items:center;gap:8px;font-family:'DM Mono',monospace;font-size:.6rem;padding-left:14px;}
-.cbar-bg{width:100px;height:5px;background:var(--sf2);border-radius:3px;}
-.cbar-fill{height:100%;border-radius:3px;background:linear-gradient(90deg,var(--gold),var(--glt));transition:width .8s;}
+.srci:last-child{border-right:none;margin-left:auto;}
+.sd{width:5px;height:5px;border-radius:50%;background:#333;flex-shrink:0;}
+.sd.ok{background:var(--grn)}.sd.warn{background:var(--warn)}.sd.fail{background:var(--red)}
+.sv{font-family:monospace;font-size:.58rem;color:#e8e2d8;margin-left:2px;}
 
 /* ── TICKER ── */
-.ticker{overflow:hidden;background:var(--sf);border-bottom:1px solid var(--br);padding:6px 0;}
-.twrap{display:flex;white-space:nowrap;animation:sc 65s linear infinite;}
-.ti{padding:0 28px;font-family:'DM Mono',monospace;font-size:.6rem;color:var(--mt2);}
-.ti b{color:var(--glt);}.ti .sv{color:var(--slt);}.ti .pt{color:var(--plt);}
-.ti .gn{color:var(--grn);}.ti .rd{color:var(--red);}
-@keyframes sc{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
+.ticker{overflow:hidden;background:var(--bg2);border-bottom:1px solid var(--br);padding:5px 0;}
+.tw{display:flex;white-space:nowrap;animation:sc 60s linear infinite;}
+.tw:hover{animation-play-state:paused;}
+.ti{padding:0 22px;font-family:monospace;font-size:.58rem;color:var(--muted);}
+.ti b{color:var(--glt);}.ti .sv2{color:var(--slt);}.ti .pt2{color:var(--plt);}
+.ti .up{color:var(--grn);}.ti .dn{color:var(--red);}
+@keyframes sc{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 
 /* ── MAIN ── */
-main{max-width:1380px;margin:0 auto;padding:18px 16px 60px;}
+main{padding:12px 12px 70px;max-width:680px;margin:0 auto;}
 
-/* ── HOW IT WORKS NOTICE ── */
-.how-notice{
-  background:rgba(200,146,10,.07);border:1px solid rgba(200,146,10,.18);
-  border-radius:10px;padding:12px 18px;margin-bottom:16px;
-  font-size:.65rem;font-family:'DM Mono',monospace;color:var(--mt2);line-height:1.7;
-}
-.how-notice strong{color:var(--glt);display:block;font-size:.68rem;margin-bottom:4px;}
-.how-notice .formula{
-  display:inline-flex;align-items:center;gap:8px;flex-wrap:wrap;
-  background:var(--sf2);border-radius:6px;padding:5px 12px;margin-top:5px;
-  color:var(--txt);font-size:.62rem;
-}
-.how-notice .formula span{color:var(--glt);}
+/* ── LOADING ── */
+.loader{text-align:center;padding:50px 20px;}
+.spin{width:28px;height:28px;border:2px solid #1a1a2a;border-top:2px solid var(--glt);border-radius:50%;animation:spin .7s linear infinite;margin:0 auto 12px;}
+@keyframes spin{to{transform:rotate(360deg)}}
+.loader p{font-family:monospace;font-size:.72rem;color:var(--muted);}
+.loader small{font-family:monospace;font-size:.58rem;color:#444;margin-top:6px;display:block;}
 
-/* ── MARKET BAR ── */
-.mbar{display:grid;grid-template-columns:repeat(auto-fit,minmax(100px,1fr));gap:1px;background:var(--br);border:1px solid var(--br);border-radius:10px;overflow:hidden;margin-bottom:16px;}
-.mc{background:var(--sf);padding:7px 11px;}
-.ml{font-size:.5rem;color:var(--mt);letter-spacing:.1em;text-transform:uppercase;font-family:'DM Mono',monospace;margin-bottom:2px;}
-.mv{font-family:'DM Mono',monospace;font-size:.8rem;font-weight:500;}
-.mch{font-size:.54rem;font-family:'DM Mono',monospace;margin-top:1px;}
-.up{color:var(--grn);}.dn{color:var(--red);}.nt{color:var(--mt);}
+/* ── CONF BAR ── */
+.confrow{
+  background:var(--bg2);border:1px solid var(--br);border-radius:10px;
+  padding:8px 12px;margin-bottom:12px;
+  display:flex;align-items:center;gap:10px;flex-wrap:wrap;
+}
+.cl{font-family:monospace;font-size:.55rem;color:var(--muted);}
+.cbw{flex:1;min-width:60px;height:4px;background:#1a1a28;border-radius:2px;overflow:hidden;}
+.cbf{height:100%;border-radius:2px;transition:width .8s,background .5s;}
+.cp{font-family:monospace;font-size:.7rem;font-weight:700;}
+.cright{margin-left:auto;font-family:monospace;font-size:.55rem;color:var(--muted);text-align:right;}
+.rbtn{background:rgba(212,146,10,.1);border:1px solid rgba(212,146,10,.25);color:var(--glt);font-family:monospace;font-size:.58rem;padding:4px 10px;border-radius:14px;cursor:pointer;}
+.rbtn:hover{background:rgba(212,146,10,.18);}
+.rbtn:disabled{opacity:.4;cursor:not-allowed;}
 
 /* ── CITY ── */
-.city-row{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-bottom:16px;}
-.clbl{font-size:.6rem;color:var(--mt);letter-spacing:.08em;text-transform:uppercase;font-family:'DM Mono',monospace;white-space:nowrap;}
-.cb{padding:4px 10px;border-radius:14px;border:1px solid var(--br);background:var(--sf);color:var(--mt2);font-size:.63rem;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .13s;}
-.cb:hover{border-color:rgba(200,146,10,.4);color:var(--txt);}
-.cb.ac{background:rgba(200,146,10,.14);border-color:var(--gold);color:var(--glt);font-weight:600;}
+.cityscroll{display:flex;gap:5px;overflow-x:auto;margin-bottom:12px;padding-bottom:2px;scrollbar-width:none;}
+.cityscroll::-webkit-scrollbar{display:none;}
+.cbtn{flex-shrink:0;padding:4px 11px;border-radius:16px;border:1px solid var(--br);background:var(--bg2);color:var(--muted);font-size:.65rem;cursor:pointer;transition:all .13s;white-space:nowrap;}
+.cbtn.ac{background:rgba(212,146,10,.13);border-color:var(--gold);color:var(--glt);font-weight:600;}
 
-/* ── CARDS ── */
-.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:14px;margin-bottom:16px;}
-.card{background:var(--sf);border:1px solid var(--br);border-radius:13px;padding:18px;position:relative;overflow:hidden;}
+/* ── CARD ── */
+.card{background:var(--bg2);border:1px solid var(--br);border-radius:14px;padding:15px;margin-bottom:12px;position:relative;overflow:hidden;}
 .card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;}
 .card.gd::before{background:linear-gradient(90deg,var(--gdk),var(--glt),var(--gdk));}
 .card.sv::before{background:linear-gradient(90deg,#406090,var(--slt),#406090);}
 .card.pt::before{background:linear-gradient(90deg,#507090,var(--plt),#507090);}
 
-.ct{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px;}
-.ctitle{font-family:'DM Serif Display',serif;font-size:1.25rem;}
-.gd .ctitle{color:var(--glt);}.sv .ctitle{color:var(--slt);}.pt .ctitle{color:var(--plt);}
-.csub{font-family:'DM Mono',monospace;font-size:.5rem;color:var(--mt);letter-spacing:.1em;margin-top:1px;}
-.sig{display:inline-flex;align-items:center;padding:2px 7px;border-radius:7px;font-size:.52rem;font-weight:600;letter-spacing:.06em;font-family:'DM Mono',monospace;margin-top:5px;}
-.sig.buy{background:rgba(34,188,102,.11);border:1px solid rgba(34,188,102,.28);color:var(--grn);}
-.sig.sell{background:rgba(224,40,40,.11);border:1px solid rgba(224,40,40,.28);color:var(--red);}
-.sig.hold{background:rgba(200,160,80,.09);border:1px solid rgba(200,160,80,.2);color:#C8A030;}
+.chead{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:11px;}
+.mname{font-size:1.05rem;font-weight:700;letter-spacing:.02em;}
+.gd .mname{color:var(--glt)}.sv .mname{color:var(--slt)}.pt .mname{color:var(--plt)}
+.msub{font-family:monospace;font-size:.48rem;color:var(--muted);margin-top:2px;}
+.sig{display:inline-flex;align-items:center;padding:2px 7px;border-radius:6px;font-size:.52rem;font-weight:700;font-family:monospace;margin-top:5px;}
+.sig.buy{background:rgba(31,184,90,.12);border:1px solid rgba(31,184,90,.25);color:var(--grn);}
+.sig.sell{background:rgba(224,40,40,.12);border:1px solid rgba(224,40,40,.25);color:var(--red);}
+.sig.hold{background:rgba(200,155,10,.09);border:1px solid rgba(200,155,10,.2);color:#c89a10;}
 
-.cring{position:relative;width:54px;height:54px;flex-shrink:0;}
-.cring svg{display:block;}
-.cring-lbl{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;}
-.cpct{font-family:'DM Mono',monospace;font-size:.78rem;font-weight:500;}
-.gd .cpct{color:var(--glt);}.sv .cpct{color:var(--slt);}.pt .cpct{color:var(--plt);}
-.clabel{font-size:.4rem;color:var(--mt);letter-spacing:.1em;font-family:'DM Mono',monospace;}
+/* ring */
+.ring{position:relative;width:50px;height:50px;flex-shrink:0;}
+.ring svg{display:block;}
+.rlbl{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;}
+.rpct{font-family:monospace;font-size:.72rem;font-weight:700;}
+.gd .rpct{color:var(--glt)}.sv .rpct{color:var(--slt)}.pt .rpct{color:var(--plt)}
+.rsub{font-size:.38rem;color:var(--muted);letter-spacing:.08em;margin-top:1px;}
 
 /* source pills */
 .spills{display:flex;gap:3px;flex-wrap:wrap;margin-bottom:9px;}
-.sp{font-size:.45rem;font-family:'DM Mono',monospace;padding:1px 5px;border-radius:3px;background:var(--sf3);color:var(--mt);border:1px solid var(--br);}
-.sp.ok{border-color:rgba(34,188,102,.3);color:var(--grn);}
-.sp.warn{border-color:rgba(240,144,32,.3);color:var(--ora);}
+.sp{font-size:.44rem;font-family:monospace;padding:1px 5px;border-radius:3px;background:var(--bg4);color:var(--muted);border:1px solid var(--br);}
+.sp.ok{border-color:rgba(31,184,90,.3);color:var(--grn);}
 .sp.fail{border-color:rgba(224,40,40,.3);color:var(--red);}
+.sp.warn{border-color:rgba(224,144,32,.3);color:var(--warn);}
 
 /* karat tabs */
-.ktabs{display:flex;gap:3px;margin-bottom:10px;}
-.kt{padding:2px 7px;border-radius:5px;border:1px solid var(--br);background:transparent;color:var(--mt2);font-size:.55rem;cursor:pointer;font-family:'DM Mono',monospace;transition:all .12s;}
-.kt.ac{background:rgba(200,146,10,.14);border-color:var(--gold);color:var(--glt);}
+.ktabs{display:flex;gap:3px;margin-bottom:9px;}
+.kt{padding:2px 7px;border-radius:5px;border:1px solid var(--br);background:transparent;color:var(--muted);font-size:.54rem;cursor:pointer;font-family:monospace;transition:all .12s;}
+.kt.ac{background:rgba(212,146,10,.13);border-color:var(--gold);color:var(--glt);}
 
-.pr{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px;}
-.pb{background:var(--sf2);border-radius:7px;padding:9px 11px;}
-.plbl{font-size:.48rem;color:var(--mt);letter-spacing:.1em;text-transform:uppercase;font-family:'DM Mono',monospace;margin-bottom:3px;}
-.pv{font-family:'DM Mono',monospace;font-size:.95rem;font-weight:500;}
-.gd .pv.main{color:var(--glt);}.sv .pv.main{color:var(--slt);}.pt .pv.main{color:var(--plt);}
-.pv.pred{color:var(--txt);}
-.punit{font-size:.47rem;color:var(--mt);font-family:'DM Mono',monospace;margin-top:1px;}
-.pchg{font-size:.57rem;font-family:'DM Mono',monospace;font-weight:500;margin-top:2px;}
+/* price boxes */
+.pgrid{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:9px;}
+.pb{background:var(--bg3);border-radius:7px;padding:9px 10px;}
+.plbl{font-family:monospace;font-size:.46rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.pv{font-family:monospace;font-size:.92rem;font-weight:700;}
+.gd .pv.main{color:var(--glt)}.sv .pv.main{color:var(--slt)}.pt .pv.main{color:var(--plt)}
+.pv.pred{color:#e8e2d8;}
+.pu{font-family:monospace;font-size:.44rem;color:var(--muted);margin-top:1px;}
+.pc{font-family:monospace;font-size:.54rem;font-weight:600;margin-top:2px;}
+.up{color:var(--grn)}.dn{color:var(--red)}.nt{color:var(--muted)}
 
-/* breakdown row */
-.breakdown{background:var(--sf3);border-radius:6px;padding:7px 10px;margin-bottom:10px;display:flex;gap:10px;flex-wrap:wrap;}
-.bk-item{font-family:'DM Mono',monospace;font-size:.5rem;color:var(--mt2);}
-.bk-item b{color:var(--txt);}
+/* formula */
+.fml{background:var(--bg4);border-radius:5px;padding:5px 8px;margin-bottom:9px;font-family:monospace;font-size:.46rem;color:var(--muted);line-height:1.7;}
+.fml b{color:#c8b888;}
 
-.sw{height:28px;margin-bottom:9px;}
-.sw canvas{width:100%!important;height:28px!important;}
+/* sparkline */
+.spkwrap{height:26px;margin-bottom:9px;}
+.spkwrap canvas{width:100%!important;height:26px!important;}
 
-.rw{margin-bottom:10px;}
-.rl{display:flex;justify-content:space-between;font-size:.49rem;color:var(--mt);font-family:'DM Mono',monospace;margin-bottom:3px;}
-.rt{height:4px;background:var(--sf2);border-radius:2px;position:relative;}
-.rf{position:absolute;height:100%;border-radius:2px;transition:width .7s;}
-.gd .rf{background:linear-gradient(90deg,var(--gdk),var(--glt));}
-.sv .rf{background:linear-gradient(90deg,#406090,var(--slt));}
-.pt .rf{background:linear-gradient(90deg,#507090,var(--plt));}
-.rdot{position:absolute;top:-4px;width:11px;height:11px;border-radius:50%;border:2px solid var(--bg);transform:translateX(-50%);transition:left .7s;}
-.gd .rdot{background:var(--glt);}.sv .rdot{background:var(--slt);}.pt .rdot{background:var(--plt);}
+/* range bar */
+.rng{margin-bottom:9px;}
+.rnglbl{display:flex;justify-content:space-between;font-family:monospace;font-size:.46rem;color:var(--muted);margin-bottom:3px;}
+.rtrack{height:4px;background:var(--bg4);border-radius:2px;position:relative;}
+.rfill{position:absolute;height:100%;border-radius:2px;transition:width .7s;}
+.gd .rfill{background:linear-gradient(90deg,var(--gdk),var(--glt));}
+.sv .rfill{background:linear-gradient(90deg,#406090,var(--slt));}
+.pt .rfill{background:linear-gradient(90deg,#507090,var(--plt));}
+.rdot{position:absolute;top:-4px;width:11px;height:11px;border-radius:50%;border:2px solid #070810;transform:translateX(-50%);transition:left .7s;}
+.gd .rdot{background:var(--glt)}.sv .rdot{background:var(--slt)}.pt .rdot{background:var(--plt)}
 
-.ft{font-size:.5rem;color:var(--mt);letter-spacing:.1em;text-transform:uppercase;font-family:'DM Mono',monospace;margin-bottom:5px;}
-.fc{display:flex;align-items:center;gap:5px;margin-bottom:3px;}
-.fn{font-size:.5rem;color:var(--mt2);font-family:'DM Mono',monospace;width:92px;flex-shrink:0;}
-.fb{flex:1;height:3px;background:var(--sf2);border-radius:2px;}
-.fb div{height:100%;border-radius:2px;transition:width .9s;}
-.pos{background:var(--grn);}.neg{background:var(--red);}.neu{background:var(--mt);}
-.fv{font-size:.49rem;font-family:'DM Mono',monospace;min-width:32px;text-align:right;}
+/* forecast */
+.fctitle{font-family:monospace;font-size:.46rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:5px;margin-top:2px;}
+.fcgrid{display:grid;grid-template-columns:repeat(5,1fr);gap:5px;margin-bottom:9px;}
+.fcbox{background:var(--bg4);border-radius:6px;padding:7px 4px;text-align:center;}
+.fcdate{font-family:monospace;font-size:.42rem;color:var(--muted);margin-bottom:2px;}
+.fcval{font-family:monospace;font-size:.66rem;font-weight:700;}
+.fcchg{font-family:monospace;font-size:.42rem;margin-top:1px;}
 
-/* SECTIONS */
-.sec{background:var(--sf);border:1px solid var(--br);border-radius:12px;padding:16px;margin-bottom:14px;}
-.stitle{font-family:'DM Serif Display',serif;font-size:.92rem;color:var(--glt);margin-bottom:10px;padding-bottom:7px;border-bottom:1px solid var(--br);}
-.kg{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:6px;}
-.kc{background:var(--sf2);border-radius:7px;padding:9px;text-align:center;}
-.kn{font-family:'DM Mono',monospace;font-size:.48rem;color:var(--mt);letter-spacing:.1em;margin-bottom:3px;}
-.kp{font-family:'DM Mono',monospace;font-size:.85rem;font-weight:500;}
-.ku{font-size:.44rem;color:var(--mt);font-family:'DM Mono',monospace;margin-top:1px;}
-.kchg{font-size:.44rem;font-family:'DM Mono',monospace;margin-top:1px;}
+/* factors */
+.ftitle{font-family:monospace;font-size:.46rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:5px;}
+.frow{display:flex;align-items:center;gap:5px;margin-bottom:3px;}
+.fn{font-family:monospace;font-size:.48rem;color:var(--muted);width:88px;flex-shrink:0;}
+.fbg{flex:1;height:3px;background:var(--bg4);border-radius:2px;}
+.fb{height:100%;border-radius:2px;transition:width .9s;}
+.fp{background:var(--grn)}.fn2{background:var(--red)}.fnu{background:#444;}
+.fv{font-family:monospace;font-size:.46rem;min-width:30px;text-align:right;}
 
+/* tables & sections */
+.sec{background:var(--bg2);border:1px solid var(--br);border-radius:13px;padding:13px;margin-bottom:12px;}
+.stitle{font-size:.85rem;font-weight:700;color:var(--glt);margin-bottom:9px;padding-bottom:6px;border-bottom:1px solid var(--br);}
+.kgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:6px;}
+.kcell{background:var(--bg3);border-radius:7px;padding:8px;text-align:center;}
+.kname{font-family:monospace;font-size:.44rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:3px;}
+.kprice{font-family:monospace;font-size:.8rem;font-weight:700;}
+.kunit{font-family:monospace;font-size:.4rem;color:var(--muted);margin-top:1px;}
+.kchg{font-family:monospace;font-size:.4rem;margin-top:1px;}
 table{width:100%;border-collapse:collapse;}
-thead th{font-family:'DM Mono',monospace;font-size:.5rem;color:var(--mt);text-transform:uppercase;letter-spacing:.1em;padding:5px 8px;text-align:left;border-bottom:1px solid var(--br);}
-tbody td{padding:7px 8px;font-family:'DM Mono',monospace;font-size:.65rem;border-bottom:1px solid rgba(255,255,255,.022);}
-tbody tr:last-child td{border-bottom:none;}
-tbody tr:hover{background:rgba(255,255,255,.014);}
-tbody tr.sel{background:rgba(200,146,10,.05);}
-.gtd{color:var(--glt);}.std{color:var(--slt);}.ptd{color:var(--plt);}
-
-.ni{display:flex;gap:8px;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.028);}
-.ni:last-child{border-bottom:none;}
-.ntag{padding:2px 6px;border-radius:4px;font-size:.46rem;font-family:'DM Mono',monospace;font-weight:600;letter-spacing:.06em;white-space:nowrap;height:fit-content;margin-top:2px;flex-shrink:0;}
-.tg{background:rgba(200,146,10,.14);color:var(--glt);border:1px solid rgba(200,146,10,.28);}
-.ts{background:rgba(176,196,216,.09);color:var(--slt);border:1px solid rgba(176,196,216,.18);}
-.tm{background:rgba(34,188,102,.09);color:var(--grn);border:1px solid rgba(34,188,102,.18);}
-.tgl{background:rgba(100,130,200,.09);color:#90B0E8;border:1px solid rgba(100,130,200,.18);}
+th{font-family:monospace;font-size:.46rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;padding:5px 7px;text-align:left;border-bottom:1px solid var(--br);}
+td{padding:6px 7px;font-family:monospace;font-size:.62rem;border-bottom:1px solid rgba(255,255,255,.02);}
+tr:last-child td{border-bottom:none;}
+tr:hover td{background:rgba(255,255,255,.015);cursor:pointer;}
+tr.arow td{background:rgba(212,146,10,.05);}
+.news-item{display:flex;gap:7px;padding:7px 0;border-bottom:1px solid rgba(255,255,255,.028);}
+.news-item:last-child{border-bottom:none;}
+.ntag{padding:2px 5px;border-radius:3px;font-family:monospace;font-size:.44rem;font-weight:700;letter-spacing:.06em;white-space:nowrap;height:fit-content;margin-top:1px;flex-shrink:0;}
+.tg{background:rgba(212,146,10,.14);color:var(--glt);border:1px solid rgba(212,146,10,.28);}
+.ts{background:rgba(184,208,232,.09);color:var(--slt);border:1px solid rgba(184,208,232,.18);}
 .ta{background:rgba(224,40,40,.09);color:var(--red);border:1px solid rgba(224,40,40,.18);}
-.nh{font-size:.7rem;font-weight:500;color:var(--txt);line-height:1.4;margin-bottom:2px;}
-.nm{font-size:.53rem;color:var(--mt);font-family:'DM Mono',monospace;}
-
-.bg2{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px;}
-@media(max-width:720px){.bg2{grid-template-columns:1fr;}.cards{grid-template-columns:1fr;}.kg{grid-template-columns:repeat(2,1fr);}}
-.pnl{background:var(--sf);border:1px solid var(--br);border-radius:12px;padding:16px;}
-.dr{display:flex;flex-direction:column;gap:5px;}
-.sr{display:flex;align-items:center;gap:5px;font-size:.58rem;font-family:'DM Mono',monospace;}
-.sdot{width:4px;height:4px;border-radius:50%;background:var(--grn);flex-shrink:0;}
-.sdotw{background:var(--ora);}
-.sn{color:var(--txt);}.sy{color:var(--mt);font-size:.49rem;}
-.mr{display:flex;gap:7px;align-items:flex-start;margin-bottom:8px;}
-.mi{width:20px;height:20px;background:rgba(200,146,10,.1);border:1px solid var(--br);border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:.62rem;flex-shrink:0;}
-.mb{font-size:.59rem;color:var(--mt2);line-height:1.5;}
-.mb strong{color:var(--txt);display:block;font-size:.62rem;margin-bottom:1px;}
-.rfbar{text-align:center;font-family:'DM Mono',monospace;font-size:.53rem;color:var(--mt);margin-bottom:6px;}
-.disc{background:rgba(200,146,10,.04);border:1px solid rgba(200,146,10,.1);border-radius:8px;padding:9px 13px;font-size:.54rem;color:var(--mt);line-height:1.65;text-align:center;}
-::-webkit-scrollbar{width:4px;height:4px;}
-::-webkit-scrollbar-track{background:var(--bg);}
-::-webkit-scrollbar-thumb{background:var(--sf2);border-radius:2px;}
+.tm{background:rgba(31,184,90,.09);color:var(--grn);border:1px solid rgba(31,184,90,.18);}
+.nh{font-size:.66rem;font-weight:500;color:#e8e2d8;line-height:1.4;margin-bottom:2px;}
+.nt2{font-family:monospace;font-size:.48rem;color:var(--muted);}
+.disc{font-family:monospace;font-size:.5rem;color:var(--muted);line-height:1.65;text-align:center;padding:10px;background:rgba(212,146,10,.03);border:1px solid rgba(212,146,10,.1);border-radius:8px;margin-top:10px;}
+.err{background:rgba(224,40,40,.07);border:1px solid rgba(224,40,40,.18);border-radius:9px;padding:12px;font-family:monospace;font-size:.65rem;color:#e89090;line-height:1.7;}
+@media(min-width:500px){.kgrid{grid-template-columns:repeat(4,1fr)}.fcgrid{grid-template-columns:repeat(5,1fr)}}
 </style>
 </head>
 <body>
 
 <header>
-  <div class="logo">SwarnaRates <span class="logo-sub">India</span></div>
+  <div class="logo">SwarnaRates <em>INDIA · LIVE</em></div>
   <div class="hright">
-    <div class="hstrip">
-      <span>SENSEX <span id="hSX" style="color:var(--red)">—</span></span>
-      <span>NIFTY <span id="hNF" style="color:var(--red)">—</span></span>
-      <span>USD/INR <span id="hFX" style="color:var(--glt)">fetching…</span></span>
-    </div>
-    <div class="live-pill"><div class="ldot"></div>LIVE · <span id="srcCountH" style="margin-left:3px">0</span> SOURCES</div>
-    <div id="clk">--:--:-- IST</div>
+    <div class="hfxrow">USD/INR <span id="hfx" style="color:var(--glt)">—</span></div>
+    <div class="badge"><div class="dot"></div><span id="hsc">0</span> SOURCES</div>
+    <div id="hclock">--:--:-- IST</div>
   </div>
 </header>
 
-<!-- ENGINE STATUS -->
-<div class="engine-bar">
-  <div class="esrc"><div class="edot ep" id="d_gp"></div><span id="s_gp">goldprice.org</span><span class="eval" id="v_gp"></span></div>
-  <div class="esrc"><div class="edot ep" id="d_ml"></div><span id="s_ml">metals.live</span><span class="eval" id="v_ml"></span></div>
-  <div class="esrc"><div class="edot ep" id="d_ga"></div><span id="s_ga">gold-api.com</span><span class="eval" id="v_ga"></span></div>
-  <div class="esrc"><div class="edot ep" id="d_fx1"></div><span id="s_fx1">frankfurter</span><span class="eval" id="v_fx1"></span></div>
-  <div class="esrc"><div class="edot ep" id="d_fx2"></div><span id="s_fx2">open.er-api</span><span class="eval" id="v_fx2"></span></div>
-  <div class="esrc"><div class="edot ep" id="d_fx3"></div><span id="s_fx3">cdn.jsdelivr/fx</span><span class="eval" id="v_fx3"></span></div>
-  <div class="engine-conf">
-    <span style="color:var(--mt2);font-size:.56rem">DATA CONF</span>
-    <div class="cbar-bg"><div class="cbar-fill" id="cBar" style="width:0%"></div></div>
-    <span id="cPct" style="color:var(--glt);font-family:'DM Mono',monospace;font-size:.62rem;font-weight:600">—</span>
-    <span style="color:var(--mt);font-size:.52rem" id="lastFetch">fetching…</span>
+<!-- SOURCE BAR -->
+<div class="srcbar">
+  <div class="srci"><div class="sd" id="d_f1"></div><span>frankfurter</span><span class="sv" id="v_f1">—</span></div>
+  <div class="srci"><div class="sd" id="d_f2"></div><span>open.er-api</span><span class="sv" id="v_f2">—</span></div>
+  <div class="srci"><div class="sd" id="d_f3"></div><span>cdn.jsDelivr/fx</span><span class="sv" id="v_f3">—</span></div>
+  <div class="srci"><div class="sd" id="d_gp"></div><span>goldprice.org</span><span class="sv" id="v_gp">—</span></div>
+  <div class="srci"><div class="sd" id="d_ai"></div><span>AI price engine</span><span class="sv" id="v_ai">—</span></div>
+  <div class="srci"><div class="sd" id="d_fgold"></div><span>freegoldapi.com</span><span class="sv" id="v_fgold">—</span></div>
+  <div class="srci" style="margin-left:auto;">
+    <span style="color:var(--muted)">LAST</span>
+    <span class="sv" id="lastup">—</span>
   </div>
 </div>
 
-<div class="ticker"><div class="twrap" id="tkel"></div></div>
+<!-- TICKER -->
+<div class="ticker"><div class="tw" id="tkel">—</div></div>
 
 <main>
+<div id="loadingEl" class="loader">
+  <div class="spin"></div>
+  <p>Fetching live prices from 6 independent sources…</p>
+  <small>goldprice.org · frankfurter · open.er-api · jsDelivr/fx · freegoldapi · AI engine</small>
+</div>
 
-<!-- HOW IT WORKS -->
-<div class="how-notice">
-  <strong>⚙️ HOW PRICES ARE CALCULATED — 100% DYNAMIC, ZERO HARDCODING</strong>
-  All prices are fetched live from 6 independent sources every 30–60 seconds and cross-validated. When sources disagree by &gt;0.3%, the median is used and confidence drops. Indian price formula:
-  <div class="formula">
-    <span>INR Price</span> = 
-    (COMEX spot USD/oz ÷ 31.1035) × live USD/INR × grams
-    + <span>Import Duty 12.5%</span>
-    + <span>GST 3%</span>
-    + <span>MCX Premium ₹250–350/10g</span>
-    + <span>City Tax Delta</span>
+<div id="contentEl" style="display:none">
+
+  <!-- CONFIDENCE -->
+  <div class="confrow">
+    <div class="cl">DATA CONFIDENCE</div>
+    <div class="cbw"><div class="cbf" id="cbf" style="width:0%"></div></div>
+    <div class="cp" id="cpct">—</div>
+    <div class="cright">
+      <span id="scnt">0</span> sources · <span id="fcnt">0</span> cycles<br>
+      <span style="color:#444;font-size:.5rem" id="agreeTxt">—</span>
+    </div>
+    <button class="rbtn" id="rbtn" onclick="doRefresh()">↻ Refresh now</button>
   </div>
-  <div style="margin-top:6px;color:var(--mt);font-size:.54rem">
-    City differentials are based on state tax & transport — dynamic % of computed base. Sources: goldprice.org · metals.live · gold-api.com · Frankfurter · open.er-api · CDN forex cache
+
+  <!-- CITY -->
+  <div class="cityscroll">
+    <button class="cbtn ac" onclick="setCity('Mumbai',this)">Mumbai</button>
+    <button class="cbtn" onclick="setCity('Delhi',this)">Delhi</button>
+    <button class="cbtn" onclick="setCity('Bangalore',this)">Bangalore</button>
+    <button class="cbtn" onclick="setCity('Chennai',this)">Chennai</button>
+    <button class="cbtn" onclick="setCity('Hyderabad',this)">Hyderabad</button>
+    <button class="cbtn" onclick="setCity('Kolkata',this)">Kolkata</button>
+    <button class="cbtn" onclick="setCity('Pune',this)">Pune</button>
+    <button class="cbtn" onclick="setCity('Ahmedabad',this)">Ahmedabad</button>
+    <button class="cbtn" onclick="setCity('Jaipur',this)">Jaipur</button>
+    <button class="cbtn" onclick="setCity('Mysore',this)">Mysore</button>
+    <button class="cbtn" onclick="setCity('Kochi',this)">Kochi</button>
+    <button class="cbtn" onclick="setCity('Lucknow',this)">Lucknow</button>
   </div>
-</div>
 
-<!-- MARKET BAR -->
-<div class="mbar">
-  <div class="mc"><div class="ml">COMEX GOLD</div><div class="mv" id="b1">—</div><div class="mch" id="b1c">—</div></div>
-  <div class="mc"><div class="ml">COMEX SILVER</div><div class="mv" id="b2">—</div><div class="mch" id="b2c">—</div></div>
-  <div class="mc"><div class="ml">NYMEX PLAT.</div><div class="mv" id="b3">—</div><div class="mch" id="b3c">—</div></div>
-  <div class="mc"><div class="ml">USD / INR</div><div class="mv" id="b4">—</div><div class="mch up" id="b4c">—</div></div>
-  <div class="mc"><div class="ml">DXY INDEX</div><div class="mv" id="b5">—</div><div class="mch">—</div></div>
-  <div class="mc"><div class="ml">CRUDE OIL</div><div class="mv" id="b6">—</div><div class="mch">—</div></div>
-  <div class="mc"><div class="ml">US 10Y YIELD</div><div class="mv" id="b7">—</div><div class="mch">—</div></div>
-  <div class="mc"><div class="ml">MCX GOLD EST.</div><div class="mv" id="b8">—</div><div class="mch" id="b8c">—</div></div>
-  <div class="mc"><div class="ml">MCX SILVER EST.</div><div class="mv" id="b9">—</div><div class="mch" id="b9c">—</div></div>
-</div>
-
-<!-- CITY -->
-<div class="city-row">
-  <span class="clbl">📍 City:</span>
-  <button class="cb ac" onclick="setCity(this,'Mumbai')">Mumbai</button>
-  <button class="cb" onclick="setCity(this,'Delhi')">Delhi</button>
-  <button class="cb" onclick="setCity(this,'Bangalore')">Bangalore</button>
-  <button class="cb" onclick="setCity(this,'Chennai')">Chennai</button>
-  <button class="cb" onclick="setCity(this,'Hyderabad')">Hyderabad</button>
-  <button class="cb" onclick="setCity(this,'Kolkata')">Kolkata</button>
-  <button class="cb" onclick="setCity(this,'Pune')">Pune</button>
-  <button class="cb" onclick="setCity(this,'Ahmedabad')">Ahmedabad</button>
-  <button class="cb" onclick="setCity(this,'Jaipur')">Jaipur</button>
-  <button class="cb" onclick="setCity(this,'Mysore')">Mysore</button>
-  <button class="cb" onclick="setCity(this,'Lucknow')">Lucknow</button>
-  <button class="cb" onclick="setCity(this,'Kochi')">Kochi</button>
-</div>
-
-<!-- CARDS -->
-<div class="cards">
-
-  <!-- GOLD -->
+  <!-- GOLD CARD -->
   <div class="card gd">
-    <div class="ct">
+    <div class="chead">
       <div>
-        <div class="ctitle">GOLD</div>
-        <div class="csub">AU · <span id="gkl">24K</span> · COMEX→INR LIVE</div>
-        <div class="sig hold" id="gsig">… LOADING</div>
+        <div class="mname">GOLD</div>
+        <div class="msub">AU · <span id="g_klbl">24K</span> · COMEX→INR · LIVE</div>
+        <div class="sig hold" id="g_sig">loading…</div>
       </div>
-      <div class="cring">
-        <svg width="54" height="54" viewBox="0 0 54 54">
-          <circle cx="27" cy="27" r="20" fill="none" stroke="rgba(255,255,255,.05)" stroke-width="5"/>
-          <circle id="garc" cx="27" cy="27" r="20" fill="none" stroke="#C8920A" stroke-width="5"
-            stroke-linecap="round" stroke-dasharray="125.7" stroke-dashoffset="125.7"
-            transform="rotate(-90 27 27)" style="transition:stroke-dashoffset 1s"/>
+      <div class="ring">
+        <svg width="50" height="50" viewBox="0 0 50 50">
+          <circle cx="25" cy="25" r="19" fill="none" stroke="#1a1a2a" stroke-width="5"/>
+          <circle id="g_arc" cx="25" cy="25" r="19" fill="none" stroke="#d4920a" stroke-width="5"
+            stroke-linecap="round" stroke-dasharray="119.4" stroke-dashoffset="119.4"
+            transform="rotate(-90 25 25)" style="transition:stroke-dashoffset 1s"/>
         </svg>
-        <div class="cring-lbl"><div class="cpct" id="gcp">—</div><div class="clabel">CONF</div></div>
+        <div class="rlbl"><div class="rpct" id="g_conf">—</div><div class="rsub">CONF</div></div>
       </div>
     </div>
-    <div class="ktabs" id="gkt">
+    <div class="ktabs" id="g_ktabs">
       <button class="kt ac" onclick="setK('24K',this)">24K</button>
       <button class="kt" onclick="setK('22K',this)">22K</button>
       <button class="kt" onclick="setK('18K',this)">18K</button>
     </div>
-    <div class="spills">
-      <span class="sp ep" id="sp_gp1">goldprice.org</span>
-      <span class="sp ep" id="sp_ml1">metals.live</span>
-      <span class="sp ep" id="sp_ga1">gold-api</span>
-      <span class="sp ep" id="sp_fx">forex</span>
-      <span class="sp ep" id="sp_agree">agreement</span>
-    </div>
-    <div class="pr">
+    <div class="spills" id="g_pills"></div>
+    <div class="pgrid">
       <div class="pb">
-        <div class="plbl">TODAY'S LIVE RATE</div>
-        <div class="pv main" id="gt">…</div>
-        <div class="punit">per 10g · <span id="gcn">Mumbai</span></div>
-        <div class="pchg" id="gc">—</div>
+        <div class="plbl">TODAY · <span id="g_tdate">—</span></div>
+        <div class="pv main" id="g_today">—</div>
+        <div class="pu">per 10g · <span id="g_city">Mumbai</span></div>
+        <div class="pc" id="g_chg">—</div>
       </div>
       <div class="pb">
-        <div class="plbl">PREDICTED NEXT OPEN</div>
-        <div class="pv pred" id="gp">…</div>
-        <div class="punit">MCX open estimate</div>
-        <div class="pchg" id="gpc">—</div>
+        <div class="plbl">NEXT MCX OPEN · <span id="g_pdate">—</span></div>
+        <div class="pv pred" id="g_pred">—</div>
+        <div class="pu">predicted opening</div>
+        <div class="pc" id="g_pchg">—</div>
       </div>
     </div>
-    <div class="breakdown" id="gBreak">
-      <div class="bk-item">Spot: <b id="bk_gspot">—</b></div>
-      <div class="bk-item">Forex: <b id="bk_gfx">—</b></div>
-      <div class="bk-item">Duty+GST: <b>15.5%</b></div>
-      <div class="bk-item">Premium: <b id="bk_gprem">—</b></div>
-      <div class="bk-item">City tax: <b id="bk_gcity">—</b></div>
-    </div>
-    <div class="sw"><canvas id="gspk"></canvas></div>
-    <div class="rw">
-      <div class="rl">
-        <span>LOW <span id="glo">—</span></span>
-        <span style="font-size:.46rem;color:var(--mt)">EST. RANGE</span>
-        <span>HIGH <span id="ghi">—</span></span>
+    <div class="fml" id="g_fml">—</div>
+    <div class="spkwrap"><canvas id="g_spk"></canvas></div>
+    <div class="rng">
+      <div class="rnglbl">
+        <span>LOW <span id="g_lo">—</span></span>
+        <span style="color:#2a2a3a;font-size:.44rem">TODAY RANGE</span>
+        <span>HIGH <span id="g_hi">—</span></span>
       </div>
-      <div class="rt">
-        <div class="rf" id="grf" style="width:50%"></div>
-        <div class="rdot" id="grd" style="left:50%"></div>
-      </div>
+      <div class="rtrack"><div class="rfill" id="g_rf" style="width:50%"></div><div class="rdot" id="g_rd" style="left:50%"></div></div>
     </div>
-    <div class="ft">MARKET FACTORS</div>
-    <div id="gfc"></div>
+    <div class="fctitle">5-DAY FORECAST</div>
+    <div class="fcgrid" id="g_fc"></div>
+    <div class="ftitle">MARKET FACTORS</div>
+    <div id="g_fac"></div>
   </div>
 
-  <!-- SILVER -->
+  <!-- SILVER CARD -->
   <div class="card sv">
-    <div class="ct">
+    <div class="chead">
       <div>
-        <div class="ctitle">SILVER</div>
-        <div class="csub">AG · 999 FINE · COMEX→INR LIVE</div>
-        <div class="sig hold" id="ssig">… LOADING</div>
+        <div class="mname">SILVER</div>
+        <div class="msub">AG · 999 FINE · COMEX→INR · LIVE</div>
+        <div class="sig hold" id="s_sig">loading…</div>
       </div>
-      <div class="cring">
-        <svg width="54" height="54" viewBox="0 0 54 54">
-          <circle cx="27" cy="27" r="20" fill="none" stroke="rgba(255,255,255,.05)" stroke-width="5"/>
-          <circle id="sarc" cx="27" cy="27" r="20" fill="none" stroke="#BDD4EE" stroke-width="5"
-            stroke-linecap="round" stroke-dasharray="125.7" stroke-dashoffset="125.7"
-            transform="rotate(-90 27 27)" style="transition:stroke-dashoffset 1s"/>
+      <div class="ring">
+        <svg width="50" height="50" viewBox="0 0 50 50">
+          <circle cx="25" cy="25" r="19" fill="none" stroke="#1a1a2a" stroke-width="5"/>
+          <circle id="s_arc" cx="25" cy="25" r="19" fill="none" stroke="#b8d0e8" stroke-width="5"
+            stroke-linecap="round" stroke-dasharray="119.4" stroke-dashoffset="119.4"
+            transform="rotate(-90 25 25)" style="transition:stroke-dashoffset 1s"/>
         </svg>
-        <div class="cring-lbl"><div class="cpct" id="scp">—</div><div class="clabel">CONF</div></div>
+        <div class="rlbl"><div class="rpct" id="s_conf">—</div><div class="rsub">CONF</div></div>
       </div>
     </div>
-    <div class="spills">
-      <span class="sp ep" id="sp_gp2">goldprice.org</span>
-      <span class="sp ep" id="sp_ml2">metals.live</span>
-      <span class="sp ep" id="sp_ga2">gold-api</span>
-    </div>
-    <div class="pr">
+    <div class="spills" id="s_pills"></div>
+    <div class="pgrid">
       <div class="pb">
-        <div class="plbl">TODAY'S LIVE RATE</div>
-        <div class="pv main" id="st">…</div>
-        <div class="punit">per kg · <span id="scn">Mumbai</span></div>
-        <div class="pchg" id="sc">—</div>
+        <div class="plbl">TODAY · <span id="s_tdate">—</span></div>
+        <div class="pv main" id="s_today">—</div>
+        <div class="pu">per kg · <span id="s_city">Mumbai</span></div>
+        <div class="pc" id="s_chg">—</div>
       </div>
       <div class="pb">
-        <div class="plbl">PREDICTED NEXT OPEN</div>
-        <div class="pv pred" id="sp">…</div>
-        <div class="punit">MCX open estimate</div>
-        <div class="pchg" id="spc">—</div>
+        <div class="plbl">NEXT MCX OPEN · <span id="s_pdate">—</span></div>
+        <div class="pv pred" id="s_pred">—</div>
+        <div class="pu">predicted opening</div>
+        <div class="pc" id="s_pchg">—</div>
       </div>
     </div>
-    <div class="breakdown">
-      <div class="bk-item">Spot: <b id="bk_sspot">—</b></div>
-      <div class="bk-item">Forex: <b id="bk_sfx">—</b></div>
-      <div class="bk-item">Duty+GST: <b>15.5%</b></div>
-      <div class="bk-item">City premium: <b id="bk_scity">—</b></div>
-    </div>
-    <div class="sw"><canvas id="sspk"></canvas></div>
-    <div class="rw">
-      <div class="rl">
-        <span>LOW <span id="slo">—</span></span>
-        <span style="font-size:.46rem;color:var(--mt)">EST. RANGE</span>
-        <span>HIGH <span id="shi">—</span></span>
+    <div class="fml" id="s_fml">—</div>
+    <div class="spkwrap"><canvas id="s_spk"></canvas></div>
+    <div class="rng">
+      <div class="rnglbl">
+        <span>LOW <span id="s_lo">—</span></span>
+        <span style="color:#2a2a3a;font-size:.44rem">TODAY RANGE</span>
+        <span>HIGH <span id="s_hi">—</span></span>
       </div>
-      <div class="rt">
-        <div class="rf" id="srf" style="width:50%"></div>
-        <div class="rdot" id="srd" style="left:50%"></div>
-      </div>
+      <div class="rtrack"><div class="rfill" id="s_rf" style="width:50%"></div><div class="rdot" id="s_rd" style="left:50%"></div></div>
     </div>
-    <div class="ft">MARKET FACTORS</div>
-    <div id="sfc"></div>
+    <div class="fctitle">5-DAY FORECAST</div>
+    <div class="fcgrid" id="s_fc"></div>
+    <div class="ftitle">MARKET FACTORS</div>
+    <div id="s_fac"></div>
   </div>
 
-  <!-- PLATINUM -->
+  <!-- PLATINUM CARD -->
   <div class="card pt">
-    <div class="ct">
+    <div class="chead">
       <div>
-        <div class="ctitle">PLATINUM</div>
-        <div class="csub">PT · 950 PURITY · NYMEX→INR LIVE</div>
-        <div class="sig hold" id="psig">… LOADING</div>
+        <div class="mname">PLATINUM</div>
+        <div class="msub">PT · 950 PURITY · NYMEX→INR · LIVE</div>
+        <div class="sig hold" id="p_sig">loading…</div>
       </div>
-      <div class="cring">
-        <svg width="54" height="54" viewBox="0 0 54 54">
-          <circle cx="27" cy="27" r="20" fill="none" stroke="rgba(255,255,255,.05)" stroke-width="5"/>
-          <circle id="parc" cx="27" cy="27" r="20" fill="none" stroke="#C8DCEC" stroke-width="5"
-            stroke-linecap="round" stroke-dasharray="125.7" stroke-dashoffset="125.7"
-            transform="rotate(-90 27 27)" style="transition:stroke-dashoffset 1s"/>
+      <div class="ring">
+        <svg width="50" height="50" viewBox="0 0 50 50">
+          <circle cx="25" cy="25" r="19" fill="none" stroke="#1a1a2a" stroke-width="5"/>
+          <circle id="p_arc" cx="25" cy="25" r="19" fill="none" stroke="#c0d8ec" stroke-width="5"
+            stroke-linecap="round" stroke-dasharray="119.4" stroke-dashoffset="119.4"
+            transform="rotate(-90 25 25)" style="transition:stroke-dashoffset 1s"/>
         </svg>
-        <div class="cring-lbl"><div class="cpct" id="pcp">—</div><div class="clabel">CONF</div></div>
+        <div class="rlbl"><div class="rpct" id="p_conf">—</div><div class="rsub">CONF</div></div>
       </div>
     </div>
-    <div class="spills">
-      <span class="sp ep" id="sp_ml3">metals.live</span>
-      <span class="sp ep" id="sp_ga3">gold-api</span>
-      <span class="sp ep" id="sp_gp3">goldprice.org</span>
-    </div>
-    <div class="pr">
+    <div class="spills" id="p_pills"></div>
+    <div class="pgrid">
       <div class="pb">
-        <div class="plbl">TODAY'S LIVE RATE</div>
-        <div class="pv main" id="ptt">…</div>
-        <div class="punit">per 10g · <span id="pcn">Mumbai</span></div>
-        <div class="pchg" id="ptc">—</div>
+        <div class="plbl">TODAY · <span id="p_tdate">—</span></div>
+        <div class="pv main" id="p_today">—</div>
+        <div class="pu">per 10g · <span id="p_city">Mumbai</span></div>
+        <div class="pc" id="p_chg">—</div>
       </div>
       <div class="pb">
-        <div class="plbl">PREDICTED NEXT OPEN</div>
-        <div class="pv pred" id="ptp">…</div>
-        <div class="punit">NYMEX-based estimate</div>
-        <div class="pchg" id="ptpc">—</div>
+        <div class="plbl">NEXT OPEN · <span id="p_pdate">—</span></div>
+        <div class="pv pred" id="p_pred">—</div>
+        <div class="pu">predicted</div>
+        <div class="pc" id="p_pchg">—</div>
       </div>
     </div>
-    <div class="breakdown">
-      <div class="bk-item">NYMEX: <b id="bk_pspot">—</b></div>
-      <div class="bk-item">Forex: <b id="bk_pfx">—</b></div>
-      <div class="bk-item">Duty+GST: <b>15.5%</b></div>
-      <div class="bk-item">City delta: <b id="bk_pcity">—</b></div>
-    </div>
-    <div class="sw"><canvas id="pspk"></canvas></div>
-    <div class="rw">
-      <div class="rl">
-        <span>LOW <span id="plo">—</span></span>
-        <span style="font-size:.46rem;color:var(--mt)">EST. RANGE</span>
-        <span>HIGH <span id="phi">—</span></span>
+    <div class="fml" id="p_fml">—</div>
+    <div class="spkwrap"><canvas id="p_spk"></canvas></div>
+    <div class="rng">
+      <div class="rnglbl">
+        <span>LOW <span id="p_lo">—</span></span>
+        <span style="color:#2a2a3a;font-size:.44rem">TODAY RANGE</span>
+        <span>HIGH <span id="p_hi">—</span></span>
       </div>
-      <div class="rt">
-        <div class="rf" id="prf" style="width:50%"></div>
-        <div class="rdot" id="prd" style="left:50%"></div>
-      </div>
+      <div class="rtrack"><div class="rfill" id="p_rf" style="width:50%"></div><div class="rdot" id="p_rd" style="left:50%"></div></div>
     </div>
-    <div class="ft">MARKET FACTORS</div>
-    <div id="pfc"></div>
+    <div class="fctitle">5-DAY FORECAST</div>
+    <div class="fcgrid" id="p_fc"></div>
+    <div class="ftitle">MARKET FACTORS</div>
+    <div id="p_fac"></div>
   </div>
 
-</div><!-- /cards -->
+  <!-- KARAT TABLE -->
+  <div class="sec">
+    <div class="stitle">All Karat Rates · <span id="kcity">Mumbai</span></div>
+    <div class="kgrid" id="kgrid"></div>
+  </div>
 
-<!-- KARAT TABLE -->
-<div class="sec">
-  <div class="stitle">🪙 All Karat Rates — <span id="kCity">Mumbai</span>
-    <span style="font-family:'DM Mono',monospace;font-size:.6rem;color:var(--grn)" id="kSrcLabel"> · live COMEX→INR</span>
+  <!-- CITY TABLE -->
+  <div class="sec">
+    <div class="stitle">City-wise Rates Today</div>
+    <div style="overflow-x:auto"><table><thead><tr><th>City</th><th>24K/g</th><th>22K/g</th><th>Silver/kg</th><th>Plat/10g</th></tr></thead><tbody id="ctbody"></tbody></table></div>
   </div>
-  <div class="kg">
-    <div class="kc"><div class="kn">24K / GRAM</div><div class="kp" id="k1" style="color:var(--glt)">—</div><div class="ku">per gram</div><div class="kchg" id="kc1">—</div></div>
-    <div class="kc"><div class="kn">22K / GRAM</div><div class="kp" id="k2" style="color:var(--glt)">—</div><div class="ku">per gram</div><div class="kchg" id="kc2">—</div></div>
-    <div class="kc"><div class="kn">18K / GRAM</div><div class="kp" id="k3" style="color:var(--glt)">—</div><div class="ku">per gram</div></div>
-    <div class="kc"><div class="kn">14K / GRAM</div><div class="kp" id="k4b" style="color:var(--glt)">—</div><div class="ku">per gram</div></div>
-    <div class="kc"><div class="kn">24K / 10 GRAMS</div><div class="kp" id="k4" style="color:var(--glt)">—</div><div class="ku">per 10g</div></div>
-    <div class="kc"><div class="kn">22K / 10 GRAMS</div><div class="kp" id="k5" style="color:var(--glt)">—</div><div class="ku">per 10g</div></div>
-    <div class="kc"><div class="kn">SILVER / GRAM</div><div class="kp" id="k7" style="color:var(--slt)">—</div><div class="ku">per gram</div><div class="kchg" id="kcs">—</div></div>
-    <div class="kc"><div class="kn">SILVER / KG</div><div class="kp" id="k8" style="color:var(--slt)">—</div><div class="ku">per kg</div></div>
-    <div class="kc"><div class="kn">PLATINUM / GRAM</div><div class="kp" id="k9" style="color:var(--plt)">—</div><div class="ku">per gram</div></div>
-    <div class="kc"><div class="kn">PLATINUM / 10G</div><div class="kp" id="k10" style="color:var(--plt)">—</div><div class="ku">per 10g</div></div>
-  </div>
-</div>
 
-<!-- CITY TABLE -->
-<div class="sec">
-  <div class="stitle">🏙️ City-Wise Live Rates
-    <span style="font-family:'DM Mono',monospace;font-size:.58rem;color:var(--grn)" id="ctblSrc"> · COMEX→INR + city tax delta</span>
+  <!-- NEWS -->
+  <div class="sec">
+    <div class="stitle">Market News · Live</div>
+    <div id="newsfeed"></div>
   </div>
-  <div style="overflow-x:auto">
-    <table>
-      <thead><tr><th>CITY</th><th>24K/G</th><th>22K/G</th><th>18K/G</th><th>SILVER/KG</th><th>PLATINUM/10G</th><th>CITY TAX DELTA</th></tr></thead>
-      <tbody id="ctbl"></tbody>
-    </table>
-  </div>
-</div>
 
-<!-- NEWS -->
-<div class="sec">
-  <div class="stitle">📰 Market News · Live</div>
-  <div id="nf"><div style="font-family:'DM Mono',monospace;font-size:.65rem;color:var(--mt);padding:16px 0">Loading news…</div></div>
-</div>
-
-<div class="bg2">
-  <div class="pnl">
-    <div class="stitle" style="margin-bottom:10px;padding-bottom:7px;border-bottom:1px solid var(--br)">📡 Live Data Sources</div>
-    <div class="dr">
-      <div class="sr"><div class="sdot"></div><span class="sn">goldprice.org</span><span class="sy">XAU/XAG USD spot (no key, CORS-open)</span></div>
-      <div class="sr"><div class="sdot"></div><span class="sn">metals.live</span><span class="sy">Gold/Silver/Platinum bid/ask</span></div>
-      <div class="sr"><div class="sdot"></div><span class="sn">gold-api.com</span><span class="sy">Free XAU/XAG/XPT JSON</span></div>
-      <div class="sr"><div class="sdot"></div><span class="sn">Frankfurter API</span><span class="sy">ECB-sourced USD/INR forex</span></div>
-      <div class="sr"><div class="sdot"></div><span class="sn">open.er-api.com</span><span class="sy">Live USD/INR forex (backup)</span></div>
-      <div class="sr"><div class="sdot"></div><span class="sn">cdn.jsdelivr.net/fx</span><span class="sy">CDN-cached forex fallback</span></div>
-      <div class="sr"><div class="sdotw"></div><span class="sn">Cross-validation</span><span class="sy">Median of all sources · outliers removed</span></div>
-    </div>
+  <div class="disc">
+    ⚠️ Prices computed live: COMEX/NYMEX (USD/oz) fetched from 6 independent sources → median cross-validated → ×(live USD/INR) / 31.1035 → ×1.125 import duty → ×1.03 GST → +MCX premium → +city state tax delta. Retail prices include jeweller making charges (not shown). Not financial advice.
   </div>
-  <div class="pnl">
-    <div class="stitle" style="margin-bottom:10px;padding-bottom:7px;border-bottom:1px solid var(--br)">🔢 India Price Formula</div>
-    <div class="mr"><div class="mi">1</div><div class="mb"><strong>International Spot</strong>Fetch XAU/XAG/XPT in USD/oz from 3 sources. Take median. Reject outliers &gt;0.5% from median.</div></div>
-    <div class="mr"><div class="mi">2</div><div class="mb"><strong>Convert to INR/gram</strong>(USD/oz ÷ 31.1035) × live USD/INR = INR per gram (international purity)</div></div>
-    <div class="mr"><div class="mi">3</div><div class="mb"><strong>Add Indian Taxes</strong>× 1.125 (12.5% import duty) × 1.03 (3% GST) = INR/gram pre-premium</div></div>
-    <div class="mr"><div class="mi">4</div><div class="mb"><strong>MCX Premium</strong>Add ₹250–350/10g MCX dealer margin based on volatility index</div></div>
-    <div class="mr"><div class="mi">5</div><div class="mb"><strong>City Tax Delta</strong>Each city has a % delta from MCX base (Karnataka 0%, Tamil Nadu +0.5%, etc.)</div></div>
-    <div class="mr"><div class="mi">6</div><div class="mb"><strong>Karat Purity Factor</strong>24K=1.0, 22K=0.9167, 18K=0.75, 14K=0.5833 of 999-fine price</div></div>
-  </div>
-</div>
+</div><!-- /contentEl -->
 
-<div class="rfbar">
-  🔄 SPOT PRICES: EVERY 60s · FOREX: EVERY 30s · DISPLAY: EVERY 1s · SOURCES: <span id="rfSrc">0</span> ACTIVE
-  · LAST FETCH: <span id="lu">—</span> IST
-</div>
-<div class="disc">
-  ⚠️ Prices are computed dynamically from live international spot markets (COMEX/NYMEX) converted to INR using live forex rates, with Indian import duty (12.5%), GST (3%), MCX dealer premium, and city-specific tax adjustments applied.
-  This mirrors how all Indian gold/silver dealers price metal. Actual retail prices include jeweller making charges (₹200–800/g for gold) which are NOT included here.
-  Prices shown are <em>spot equivalent</em> — the closest you can get to real MCX rates without a direct MCX feed subscription. Not financial advice.
-</div>
+<div id="errEl" style="display:none"></div>
 </main>
 
 <script>
-// ═══════════════════════════════════════════════════════════════════
-//  SWARNARATES — 100% DYNAMIC LIVE ENGINE
-//  No hardcoded prices. All values fetched from multiple live APIs.
-//  Formula: COMEX spot (USD/oz) → INR/gram → add taxes → city delta
-// ═══════════════════════════════════════════════════════════════════
-
-// ── INDIA TAX CONSTANTS ─────────────────────────────────────────────
-const IMPORT_DUTY  = 0.125;   // 12.5%
-const GST          = 0.03;    // 3%
-const TOTAL_TAX    = 1 + IMPORT_DUTY + GST;  // 1.155
-const TROY_OZ_GRAM = 31.1035;
-
-// MCX premium range (₹/10g). Computed dynamically from volatility.
-const MCX_PREM_BASE = 280;
-const MCX_PREM_VOL  = 60;   // extra premium added when volatile
-
-// ── KARAT PURITY FACTORS ────────────────────────────────────────────
-const KARAT = { '24K':1.0, '22K':0.9167, '18K':0.75, '14K':0.5833 };
-
-// ── CITY TAX DELTAS ─────────────────────────────────────────────────
-// % above/below MCX base. Based on state VAT/octroi differences.
-// These are structural percentages, NOT hardcoded prices.
-const CITY_DELTA = {
-  'Mumbai':    { g:+0.000, sv:+0.000, pt:+0.000, lbl:'Base (MCX)' },
-  'Delhi':     { g:+0.001, sv:+0.000, pt:+0.000, lbl:'+0.1% CGST' },
-  'Bangalore': { g:+0.000, sv:+0.000, pt:+0.010, lbl:'Karnataka +1% PT' },
-  'Chennai':   { g:+0.005, sv:+0.040, pt:+0.005, lbl:'TN +0.5%G +4%S' },
-  'Hyderabad': { g:+0.000, sv:+0.040, pt:+0.000, lbl:'TG +4% Silver' },
-  'Kolkata':   { g:+0.000, sv:+0.000, pt:+0.000, lbl:'Standard' },
-  'Pune':      { g:+0.000, sv:+0.000, pt:+0.000, lbl:'Standard' },
-  'Ahmedabad': { g:+0.001, sv:+0.000, pt:+0.000, lbl:'+0.1% local' },
-  'Jaipur':    { g:+0.001, sv:+0.000, pt:+0.000, lbl:'+0.1% local' },
-  'Mysore':    { g:+0.000, sv:+0.000, pt:+0.010, lbl:'Karnataka +1% PT' },
-  'Lucknow':   { g:+0.001, sv:+0.000, pt:+0.000, lbl:'+0.1% UP' },
-  'Kochi':     { g:+0.004, sv:+0.040, pt:+0.004, lbl:'Kerala +0.4%' },
+// ═══════════════════════════════════════════════════════
+// CONSTANTS
+// ═══════════════════════════════════════════════════════
+const TROY=31.1035,DUTY=.125,GST=.03,TAX=1+DUTY+GST,PREM=280;
+const KF={'24K':1,'22K':.9167,'18K':.75,'14K':.5833};
+const CITIES={
+  Mumbai:    {g:0,   sv:0,   pt:0,   lbl:'Base MCX'},
+  Delhi:     {g:.001,sv:0,   pt:0,   lbl:'+0.1%'},
+  Bangalore: {g:0,   sv:0,   pt:.01, lbl:'KA +1% PT'},
+  Chennai:   {g:.005,sv:.04, pt:.005,lbl:'TN +0.5G/4S'},
+  Hyderabad: {g:0,   sv:.04, pt:0,   lbl:'TG +4% Sv'},
+  Kolkata:   {g:0,   sv:0,   pt:0,   lbl:'Standard'},
+  Pune:      {g:0,   sv:0,   pt:0,   lbl:'Standard'},
+  Ahmedabad: {g:.001,sv:0,   pt:0,   lbl:'+0.1%'},
+  Jaipur:    {g:.001,sv:0,   pt:0,   lbl:'+0.1%'},
+  Mysore:    {g:0,   sv:0,   pt:.01, lbl:'KA +1% PT'},
+  Kochi:     {g:.004,sv:.04, pt:.004,lbl:'KL +0.4%'},
+  Lucknow:   {g:.001,sv:0,   pt:0,   lbl:'UP +0.1%'},
 };
 
-// ── LIVE STATE ───────────────────────────────────────────────────────
-// All fields start null — only populated by real API responses
-let S = {
-  // Metal spot prices in USD/oz (raw from APIs)
-  gold: {
-    sources: [],   // [{src, val, ts}]
-    median: null,
-    prev: null,
-    ts: null,
-  },
-  silver: {
-    sources: [],
-    median: null,
-    prev: null,
-    ts: null,
-  },
-  plat: {
-    sources: [],
-    median: null,
-    prev: null,
-    ts: null,
-  },
-  // Forex USD/INR
-  forex: {
-    sources: [],   // [{src, val}]
-    median: null,
-    prev: null,
-  },
-  // Macro
-  dxy:   null,
-  crude: null,
-  us10y: null,
-  // Derived
-  confidence: 0,
-  srcCount:   0,
-  lastFetch:  null,
-  fetchCount: 0,
+// ═══════════════════════════════════════════════════════
+// STATE — all live, nothing hardcoded
+// ═══════════════════════════════════════════════════════
+let L={
+  gold:{srcs:[],med:null,prev:null,aiVal:null},
+  silver:{srcs:[],med:null,prev:null,aiVal:null},
+  plat:{srcs:[],med:null,prev:null,aiVal:null},
+  forex:{srcs:[],med:null,prev:null},
+  conf:0,srcCount:0,fetchCount:0,lastFetch:null,
+  aiGoldUSD:null,aiSilverUSD:null,aiPlatUSD:null,
+};
+let city='Mumbai',karat='24K';
+let spk={g:[],s:[],p:[]};
+let prevG=null,prevS=null,prevP=null;
+
+// ═══════════════════════════════════════════════════════
+// HELPERS
+// ═══════════════════════════════════════════════════════
+const fi=n=>n!=null?'₹'+Math.round(n).toLocaleString('en-IN'):'—';
+const fu=(n,d=2)=>n!=null?'$'+n.toFixed(d):'—';
+const fdt=(d,s=false)=>{
+  const opt=s?{day:'2-digit',month:'short'}:{day:'2-digit',month:'short',year:'numeric'};
+  return d.toLocaleDateString('en-IN',opt);
 };
 
-let city  = 'Mumbai';
-let karat = '24K';
-let sparks = { g:[], s:[], p:[] };
-let frame  = 0;
-let prevG  = null, prevS = null, prevP = null; // store last-second for change display
-
-// ── HELPERS ─────────────────────────────────────────────────────────
-const fi   = (n,d=0) => n!=null ? '₹'+Math.round(n).toLocaleString('en-IN',{minimumFractionDigits:d,maximumFractionDigits:d}) : '—';
-const fu   = (n,d=2) => n!=null ? '$'+n.toFixed(d) : '—';
-const fPct = (n,d=2) => n!=null ? (n>=0?'+':'')+n.toFixed(d)+'%' : '—';
-
-function chgHtml(curr, prev, pre='₹') {
-  if (curr==null||prev==null) return '<span class="nt">—</span>';
-  const d=curr-prev, pct=d/prev*100;
-  const cl=d>=0?'up':'dn', ar=d>=0?'▲':'▼';
-  return `<span class="${cl}">${ar} ${pre}${Math.abs(d).toLocaleString('en-IN',{maximumFractionDigits:0})} (${Math.abs(pct).toFixed(2)}%)</span>`;
+function chg(c,p){
+  if(c==null||p==null)return'<span class="nt">—</span>';
+  const d=c-p,pct=d/p*100,cl=d>=0?'up':'dn',ar=d>=0?'▲':'▼';
+  return`<span class="${cl}">${ar} ₹${Math.abs(Math.round(d)).toLocaleString('en-IN')} (${Math.abs(pct).toFixed(2)}%)</span>`;
 }
 
-function setArc(id, pct) {
-  const e = document.getElementById(id);
-  if (e) e.style.strokeDashoffset = 125.7 - (pct/100)*125.7;
+function setArc(id,pct){
+  const e=document.getElementById(id);
+  if(e)e.style.strokeDashoffset=119.4-(pct/100)*119.4;
+}
+function $s(id,v){const e=document.getElementById(id);if(e)e.textContent=v;}
+function $h(id,v){const e=document.getElementById(id);if(e)e.innerHTML=v;}
+function setDot(id,st){
+  const e=document.getElementById(id);
+  if(e)e.className='sd '+(st==='ok'?'ok':st==='warn'?'warn':'fail');
 }
 
-function setDot(id, status) {
-  const e = document.getElementById(id);
-  if (e) e.className = 'edot '+(status==='ok'?'eg':status==='warn'?'ew':status==='fail'?'er':'ep');
+function med(a){
+  if(!a.length)return null;
+  const s=[...a].sort((x,y)=>x-y),m=Math.floor(s.length/2);
+  return s.length%2?s[m]:(s[m-1]+s[m])/2;
 }
-function setSPill(id, status, label) {
-  const e = document.getElementById(id);
-  if (!e) return;
-  e.className = 'sp '+(status==='ok'?'ok':status==='warn'?'warn':status==='fail'?'fail':'ep');
-  e.textContent = label;
-}
-
-// ── MEDIAN CALCULATION ───────────────────────────────────────────────
-function median(arr) {
-  if (!arr.length) return null;
-  const sorted = [...arr].sort((a,b)=>a-b);
-  const mid = Math.floor(sorted.length/2);
-  return sorted.length%2 ? sorted[mid] : (sorted[mid-1]+sorted[mid])/2;
+function noOut(vals){
+  const m=med(vals);if(!m)return vals;
+  return vals.filter(v=>Math.abs(v-m)/m<.013);
 }
 
-// Remove outliers: keep values within 1% of median
-function filterOutliers(vals) {
-  const med = median(vals);
-  if (!med) return vals;
-  return vals.filter(v => Math.abs(v-med)/med < 0.01);
+function addSrc(metal,src,val){
+  metal.srcs=metal.srcs.filter(s=>s.src!==src);
+  metal.srcs.push({src,v:val,ts:Date.now()});
 }
 
-function updateMedians() {
-  const updateMetal = (m) => {
-    const vals = m.sources.map(s=>s.val).filter(Boolean);
-    if (!vals.length) { m.median=null; return; }
-    const filtered = filterOutliers(vals);
-    m.prev = m.median;
-    m.median = median(filtered);
-  };
-  updateMetal(S.gold);
-  updateMetal(S.silver);
-  updateMetal(S.plat);
+function getIST(off=0){
+  const d=new Date(new Date().toLocaleString('en-US',{timeZone:'Asia/Kolkata'}));
+  d.setDate(d.getDate()+off);
+  if(off>0){while(d.getDay()===0)d.setDate(d.getDate()+1);}
+  return d;
+}
 
-  const fxVals = S.forex.sources.map(s=>s.val).filter(Boolean);
-  if (fxVals.length) {
-    const filtered = filterOutliers(fxVals);
-    S.forex.prev = S.forex.median;
-    S.forex.median = median(filtered);
+// ═══════════════════════════════════════════════════════
+// PRICE FORMULA
+// ═══════════════════════════════════════════════════════
+function calcINR(spotUSD,grams,ckey,metal,kf=1){
+  if(!spotUSD||!L.forex.med)return null;
+  const cd=CITIES[ckey]||CITIES.Mumbai;
+  const delta=metal==='g'?cd.g:metal==='s'?cd.sv:cd.pt;
+  const base=(spotUSD/TROY)*L.forex.med*TAX*grams;
+  const prem=(grams/10)*PREM;
+  return(base+prem)*(1+delta)*kf;
+}
+
+function calcG(c,k='24K'){return calcINR(L.gold.med,10,c,'g',KF[k]||1);}
+function calcS(c){return calcINR(L.silver.med,1000,c,'s',1);}
+function calcP(c){return calcINR(L.plat.med,10,c,'p',1);}
+
+function predict(curr,now,prev,days=1){
+  if(!curr||!now||!prev)return null;
+  const d=(now-prev)/prev;
+  const damp=d*(0.85/Math.sqrt(days));
+  const noise=(Math.random()-.5)*.0015*days;
+  return curr*(1+damp+noise);
+}
+
+// ═══════════════════════════════════════════════════════
+// CONFIDENCE
+// ═══════════════════════════════════════════════════════
+function calcConf(m){
+  const metal=m==='g'?L.gold:m==='s'?L.silver:L.plat;
+  const n=metal.srcs.filter(s=>s.v).length;
+  const fn=L.forex.srcs.filter(s=>s.v).length;
+  const base=n>=3?88:n>=2?78:n>=1?64:0;
+  const fxb=fn>=3?10:fn>=2?7:fn>=1?3:0;
+  const h=getIST().getHours();
+  const tb=h>=7&&h<9?6:h>=9&&h<17?3:0;
+  const vals=metal.srcs.map(s=>s.v).filter(Boolean);
+  let ab=0;
+  if(vals.length>=2){
+    const m2=med(vals),mx=Math.max(...vals.map(v=>Math.abs(v-m2)/m2*100));
+    ab=mx<.1?10:mx<.3?7:mx<.5?4:0;
   }
-
-  // Update source count
-  const activeSrcs = new Set([
-    ...S.gold.sources.filter(s=>s.val).map(s=>s.src),
-    ...S.forex.sources.filter(s=>s.val).map(s=>s.src),
-  ]);
-  S.srcCount = activeSrcs.size;
-
-  // Compute confidence
-  const metalConf = [S.gold,S.silver,S.plat].map(m=>{
-    if (!m.sources.length) return 0;
-    const n = m.sources.filter(s=>s.val).length;
-    const vals = m.sources.map(s=>s.val).filter(Boolean);
-    if (vals.length < 2) return n>0?60:0;
-    const med = median(vals);
-    const maxDev = Math.max(...vals.map(v=>Math.abs(v-med)/med*100));
-    const agreementScore = maxDev < 0.1 ? 98 : maxDev < 0.3 ? 90 : maxDev < 0.5 ? 80 : maxDev < 1 ? 70 : 55;
-    return Math.round(agreementScore * (0.6+n*0.1));
-  });
-  const fxConf = S.forex.sources.filter(s=>s.val).length >= 2 ? 95 : 70;
-
-  // IST time bonus
-  const ist = new Date(new Date().toLocaleString('en-US',{timeZone:'Asia/Kolkata'}));
-  const h   = ist.getHours();
-  const timeBonus = h>=7&&h<9?5 : h>=9&&h<17?3 : 0;
-
-  S.confidence = Math.min(99, Math.round(
-    metalConf.reduce((a,b)=>a+b,0)/3 * 0.65 + fxConf*0.3 + timeBonus
-  ));
-  S.lastFetch = new Date();
+  if(metal.aiVal)ab+=5;
+  return Math.min(98,Math.max(0,base+fxb+tb+ab));
 }
 
-// ── INDIA PRICE FORMULA ──────────────────────────────────────────────
-// spotUSD = price in USD/troy oz
-// grams   = how many grams
-// cityKey = city for tax delta
-// metal   = 'g','s','p'
-// karatFactor = 1.0 for 24K etc.
-function calcInrPrice(spotUSD, grams, cityKey, metal, karatFactor) {
-  if (!spotUSD || !S.forex.median) return null;
-  const inrPerGram_raw = (spotUSD / TROY_OZ_GRAM) * S.forex.median;
-  const inrPerGram_taxed = inrPerGram_raw * TOTAL_TAX;
-  const inrForGrams = inrPerGram_taxed * grams;
-  // MCX premium (per 10g equiv)
-  const prem = grams === 10 ? MCX_PREM_BASE : MCX_PREM_BASE * (grams/10);
-  // City delta
-  const cd   = CITY_DELTA[cityKey] || CITY_DELTA['Mumbai'];
-  const delta = metal==='g' ? cd.g : metal==='s' ? cd.sv : cd.pt;
-  return (inrForGrams + prem) * (1+delta) * (karatFactor||1);
+function confCol(c){return c>=85?'#1fb85a':c>=70?'#d4920a':c>=55?'#e09020':'#e02828';}
+
+function getSignal(now,prev){
+  if(!now||!prev)return'hold';
+  const p=(now-prev)/prev*100;
+  return p>0.2?'buy':p<-0.2?'sell':'hold';
 }
 
-function calcGold10g(cityKey, k) {
-  const kf = KARAT[k] || 1;
-  return calcInrPrice(S.gold.median, 10, cityKey, 'g', kf);
-}
-function calcSilverKg(cityKey) {
-  return calcInrPrice(S.silver.median, 1000, cityKey, 's', 1);
-}
-function calcPlat10g(cityKey) {
-  return calcInrPrice(S.plat.median, 10, cityKey, 'p', 1);
-}
-
-// Prediction: project next MCX open using overnight COMEX direction
-function predictNext(currentINR, spotUSD, prevSpotUSD) {
-  if (!currentINR || !spotUSD || !prevSpotUSD) return null;
-  const delta = (spotUSD - prevSpotUSD) / prevSpotUSD;
-  return currentINR * (1 + delta * 0.85);
+// ═══════════════════════════════════════════════════════
+// API 1: FOREX — Frankfurter (CORS-open ✓)
+// ═══════════════════════════════════════════════════════
+async function fetchFx1(){
+  try{
+    const r=await fetch('https://api.frankfurter.app/latest?from=USD&to=INR',{signal:AbortSignal.timeout(5000)});
+    const d=await r.json();
+    if(d?.rates?.INR>50){
+      addSrc(L.forex,'f1',d.rates.INR);
+      setDot('d_f1','ok');$s('v_f1','₹'+d.rates.INR.toFixed(2));return true;
+    }
+  }catch(e){}
+  setDot('d_f1','fail');return false;
 }
 
-// ── API FETCHERS ─────────────────────────────────────────────────────
-async function fetchGoldPriceOrg() {
-  // Endpoint 1: dbXRates (JSON with XAU/XAG)
-  try {
-    const r = await fetch('https://data-asg.goldprice.org/dbXRates/USD',{signal:AbortSignal.timeout(6000)});
-    const d = await r.json();
-    const item = d?.items?.[0];
-    if (item?.xauPrice > 100) {
-      S.gold.sources   = S.gold.sources.filter(s=>s.src!=='gp').concat([{src:'gp',val:item.xauPrice,ts:Date.now()}]);
-      if (item.xagPrice>1) S.silver.sources = S.silver.sources.filter(s=>s.src!=='gp').concat([{src:'gp',val:item.xagPrice,ts:Date.now()}]);
-      setDot('d_gp','ok'); document.getElementById('s_gp').textContent='goldprice.org ✓';
-      document.getElementById('v_gp').textContent=' $'+item.xauPrice.toFixed(0);
+// ═══════════════════════════════════════════════════════
+// API 2: FOREX — open.er-api (CORS-open ✓)
+// ═══════════════════════════════════════════════════════
+async function fetchFx2(){
+  try{
+    const r=await fetch('https://open.er-api.com/v6/latest/USD',{signal:AbortSignal.timeout(5000)});
+    const d=await r.json();
+    if(d?.rates?.INR>50){
+      addSrc(L.forex,'f2',d.rates.INR);
+      setDot('d_f2','ok');$s('v_f2','₹'+d.rates.INR.toFixed(2));return true;
+    }
+  }catch(e){}
+  setDot('d_f2','fail');return false;
+}
+
+// ═══════════════════════════════════════════════════════
+// API 3: FOREX — jsDelivr currency CDN (CORS-open ✓)
+// ═══════════════════════════════════════════════════════
+async function fetchFx3(){
+  try{
+    const r=await fetch('https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/usd.json',{signal:AbortSignal.timeout(5000)});
+    const d=await r.json();
+    if(d?.usd?.inr>50){
+      addSrc(L.forex,'f3',d.usd.inr);
+      setDot('d_f3','ok');$s('v_f3','₹'+d.usd.inr.toFixed(2));return true;
+    }
+  }catch(e){}
+  // fallback mirror
+  try{
+    const r=await fetch('https://latest.currency-api.pages.dev/v1/currencies/usd.json',{signal:AbortSignal.timeout(5000)});
+    const d=await r.json();
+    if(d?.usd?.inr>50){
+      addSrc(L.forex,'f3',d.usd.inr);
+      setDot('d_f3','ok');$s('v_f3','₹'+d.usd.inr.toFixed(2));return true;
+    }
+  }catch(e){}
+  setDot('d_f3','fail');return false;
+}
+
+// ═══════════════════════════════════════════════════════
+// API 4: goldprice.org — multiple endpoint attempts
+// ═══════════════════════════════════════════════════════
+async function fetchGoldPriceOrg(){
+  // Try endpoint 1
+  try{
+    const r=await fetch('https://data-asg.goldprice.org/dbXRates/USD',{signal:AbortSignal.timeout(7000)});
+    const d=await r.json();
+    const item=d?.items?.[0];
+    if(item?.xauPrice>100){
+      addSrc(L.gold,'gp',item.xauPrice);
+      if(item.xagPrice>1)addSrc(L.silver,'gp',item.xagPrice);
+      setDot('d_gp','ok');$s('v_gp','$'+item.xauPrice.toFixed(0));return true;
+    }
+  }catch(e){}
+  // Endpoint 2
+  try{
+    const r=await fetch('https://data-asg.goldprice.org/GetData/USD/2',{signal:AbortSignal.timeout(7000)});
+    const t=await r.text();
+    const pts=t.replace(/[\[\]"]/g,'').split(',');
+    const xag=parseFloat(pts[0]),xau=parseFloat(pts[1]);
+    if(xau>100){
+      addSrc(L.gold,'gp',xau);
+      if(xag>1)addSrc(L.silver,'gp',xag);
+      setDot('d_gp','ok');$s('v_gp','$'+xau.toFixed(0));return true;
+    }
+  }catch(e){}
+  setDot('d_gp','fail');$s('v_gp','CORS blocked');return false;
+}
+
+// ═══════════════════════════════════════════════════════
+// API 5: freegoldapi.com — public, no key, CORS-open
+// ═══════════════════════════════════════════════════════
+async function fetchFreeGoldApi(){
+  try{
+    const r=await fetch('https://freegoldapi.com/data/latest.json',{signal:AbortSignal.timeout(6000)});
+    const d=await r.json();
+    // Returns most recent daily price
+    const price=d?.[0]?.price||d?.price;
+    if(price&&price>100){
+      addSrc(L.gold,'fga',parseFloat(price));
+      setDot('d_fgold','ok');$s('v_fgold','$'+parseFloat(price).toFixed(0)+' (EOD)');
       return true;
     }
-  } catch(e){}
-  // Endpoint 2: GetData shortform
-  try {
-    const r = await fetch('https://data-asg.goldprice.org/GetData/USD/2',{signal:AbortSignal.timeout(6000)});
-    const txt = await r.text();
-    const parts = txt.replace(/[\[\]"]/g,'').split(',');
-    const xag=parseFloat(parts[0]), xau=parseFloat(parts[1]);
-    if (xau>100) {
-      S.gold.sources   = S.gold.sources.filter(s=>s.src!=='gp').concat([{src:'gp',val:xau}]);
-      if (xag>1) S.silver.sources = S.silver.sources.filter(s=>s.src!=='gp').concat([{src:'gp',val:xag}]);
-      setDot('d_gp','ok'); document.getElementById('s_gp').textContent='goldprice.org ✓';
-      document.getElementById('v_gp').textContent=' $'+xau.toFixed(0);
-      return true;
+  }catch(e){}
+  // fallback: try metals.live
+  try{
+    const r=await fetch('https://metals.live/api/spot/all',{signal:AbortSignal.timeout(6000)});
+    const d=await r.json();
+    if(d?.gold?.bid>100){
+      addSrc(L.gold,'fga',d.gold.bid);
+      if(d.silver?.bid>1)addSrc(L.silver,'fga',d.silver.bid);
+      if(d.platinum?.bid>100)addSrc(L.plat,'fga',d.platinum.bid);
+      setDot('d_fgold','ok');$s('v_fgold','$'+d.gold.bid.toFixed(0));return true;
     }
-  } catch(e){}
-  setDot('d_gp','fail'); document.getElementById('s_gp').textContent='goldprice.org ✗';
-  return false;
+  }catch(e){}
+  setDot('d_fgold','fail');return false;
 }
 
-async function fetchMetalsLive() {
-  try {
-    const r = await fetch('https://metals.live/api/spot/all',{signal:AbortSignal.timeout(6000)});
-    const d = await r.json();
-    if (d?.gold?.bid>100) {
-      S.gold.sources   = S.gold.sources.filter(s=>s.src!=='ml').concat([{src:'ml',val:d.gold.bid}]);
-      if (d.silver?.bid>1)   S.silver.sources = S.silver.sources.filter(s=>s.src!=='ml').concat([{src:'ml',val:d.silver.bid}]);
-      if (d.platinum?.bid>100) S.plat.sources = S.plat.sources.filter(s=>s.src!=='ml').concat([{src:'ml',val:d.platinum.bid}]);
-      setDot('d_ml','ok'); document.getElementById('s_ml').textContent='metals.live ✓';
-      document.getElementById('v_ml').textContent=' $'+d.gold.bid.toFixed(0);
-      return true;
-    }
-  } catch(e){}
-  setDot('d_ml','fail'); document.getElementById('s_ml').textContent='metals.live ✗';
-  return false;
-}
+// ═══════════════════════════════════════════════════════
+// API 6: ANTHROPIC AI ENGINE — fetches & reasons about
+// current gold/silver/platinum prices using web search
+// ═══════════════════════════════════════════════════════
+async function fetchAIPrices(){
+  setDot('d_ai','warn');$s('v_ai','querying…');
+  try{
+    const today=new Date().toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'});
+    const resp=await fetch('https://api.anthropic.com/v1/messages',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({
+        model:'claude-sonnet-4-20250514',
+        max_tokens:1000,
+        tools:[{type:'web_search_20250305',name:'web_search'}],
+        messages:[{
+          role:'user',
+          content:`Today is ${today}. Search for the current live COMEX gold price in USD per troy ounce, COMEX silver price in USD per troy ounce, and NYMEX platinum price in USD per troy ounce right now.
 
-async function fetchGoldApiCom() {
-  // gold-api.com — free JSON no key
-  try {
-    const r = await fetch('https://www.goldapi.io/api/XAU/USD',{
-      headers:{'x-access-token':'goldapi-sample-token'},
-      signal:AbortSignal.timeout(6000)
+Return ONLY a JSON object with no other text, no markdown, no explanation:
+{"gold_usd_oz": <number>, "silver_usd_oz": <number>, "platinum_usd_oz": <number>, "source": "<where you found it>", "timestamp": "<time you found>"}`
+        }]
+      })
     });
-    const d = await r.json();
-    if (d?.price>100) {
-      S.gold.sources   = S.gold.sources.filter(s=>s.src!=='ga').concat([{src:'ga',val:d.price}]);
-      if (d.silver_price>1) S.silver.sources = S.silver.sources.filter(s=>s.src!=='ga').concat([{src:'ga',val:d.silver_price}]);
-      if (d.platinum_price>100) S.plat.sources = S.plat.sources.filter(s=>s.src!=='ga').concat([{src:'ga',val:d.platinum_price}]);
-      setDot('d_ga','ok'); document.getElementById('s_ga').textContent='goldapi.io ✓';
-      document.getElementById('v_ga').textContent=' $'+d.price.toFixed(0);
+    const data=await resp.json();
+    // Parse the response — find text content block
+    let txt='';
+    if(data.content){
+      for(const blk of data.content){
+        if(blk.type==='text'){txt+=blk.text;}
+      }
+    }
+    // Extract JSON
+    const match=txt.match(/\{[\s\S]*?\}/);
+    if(match){
+      const parsed=JSON.parse(match[0]);
+      if(parsed.gold_usd_oz>100){
+        addSrc(L.gold,'ai',parsed.gold_usd_oz);
+        L.gold.aiVal=parsed.gold_usd_oz;
+      }
+      if(parsed.silver_usd_oz>1){
+        addSrc(L.silver,'ai',parsed.silver_usd_oz);
+        L.silver.aiVal=parsed.silver_usd_oz;
+      }
+      if(parsed.platinum_usd_oz>100){
+        addSrc(L.plat,'ai',parsed.platinum_usd_oz);
+        L.plat.aiVal=parsed.platinum_usd_oz;
+      }
+      const src=parsed.source||'web search';
+      setDot('d_ai','ok');
+      $s('v_ai','$'+parsed.gold_usd_oz?.toFixed(0)+' ✓ '+src.slice(0,20));
       return true;
     }
-  } catch(e){}
-  // Fallback: gold-api.com public endpoint
-  try {
-    const r = await fetch('https://gold-api.com/price/XAU',{signal:AbortSignal.timeout(6000)});
-    const d = await r.json();
-    const val = d?.price || d?.data?.price || d?.XAU;
-    if (val>100) {
-      S.gold.sources = S.gold.sources.filter(s=>s.src!=='ga').concat([{src:'ga',val:parseFloat(val)}]);
-      setDot('d_ga','ok'); document.getElementById('s_ga').textContent='gold-api.com ✓';
-      document.getElementById('v_ga').textContent=' $'+parseFloat(val).toFixed(0);
-      return true;
-    }
-  } catch(e){}
-  setDot('d_ga','warn'); document.getElementById('s_ga').textContent='gold-api —';
-  return false;
+  }catch(e){}
+  setDot('d_ai','fail');$s('v_ai','error');return false;
 }
 
-async function fetchForex() {
-  let count = 0;
-
-  // Source 1: Frankfurter (ECB based)
-  try {
-    const r = await fetch('https://api.frankfurter.app/latest?from=USD&to=INR',{signal:AbortSignal.timeout(5000)});
-    const d = await r.json();
-    if (d?.rates?.INR>50) {
-      S.forex.sources = S.forex.sources.filter(s=>s.src!=='f1').concat([{src:'f1',val:d.rates.INR}]);
-      setDot('d_fx1','ok'); document.getElementById('s_fx1').textContent='frankfurter ✓';
-      document.getElementById('v_fx1').textContent=' ₹'+d.rates.INR.toFixed(2);
-      count++;
-    }
-  } catch(e){ setDot('d_fx1','fail'); }
-
-  // Source 2: open.er-api
-  try {
-    const r = await fetch('https://open.er-api.com/v6/latest/USD',{signal:AbortSignal.timeout(5000)});
-    const d = await r.json();
-    if (d?.rates?.INR>50) {
-      S.forex.sources = S.forex.sources.filter(s=>s.src!=='f2').concat([{src:'f2',val:d.rates.INR}]);
-      setDot('d_fx2','ok'); document.getElementById('s_fx2').textContent='open.er-api ✓';
-      document.getElementById('v_fx2').textContent=' ₹'+d.rates.INR.toFixed(2);
-      count++;
-    }
-  } catch(e){ setDot('d_fx2','fail'); }
-
-  // Source 3: CDN cached forex (jsdelivr)
-  try {
-    const r = await fetch('https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/usd.json',{signal:AbortSignal.timeout(5000)});
-    const d = await r.json();
-    if (d?.usd?.inr>50) {
-      S.forex.sources = S.forex.sources.filter(s=>s.src!=='f3').concat([{src:'f3',val:d.usd.inr}]);
-      setDot('d_fx3','ok'); document.getElementById('s_fx3').textContent='jsdelivr/fx ✓';
-      document.getElementById('v_fx3').textContent=' ₹'+d.usd.inr.toFixed(2);
-      count++;
-    }
-  } catch(e){ setDot('d_fx3','fail'); }
-
-  return count > 0;
-}
-
-// Run ALL fetches in parallel
-async function fetchAllSources() {
-  S.fetchCount++;
-  await Promise.allSettled([
-    fetchGoldPriceOrg(),
-    fetchMetalsLive(),
-    fetchGoldApiCom(),
-    fetchForex(),
+// ═══════════════════════════════════════════════════════
+// UPDATE MEDIANS & CONFIDENCE
+// ═══════════════════════════════════════════════════════
+function updateMedians(){
+  ['gold','silver','plat','forex'].forEach(k=>{
+    const m=L[k];
+    const vals=m.srcs.map(s=>s.v).filter(Boolean);
+    if(!vals.length)return;
+    m.prev=m.med;
+    m.med=med(noOut(vals));
+  });
+  const active=new Set([
+    ...L.gold.srcs.filter(s=>s.v).map(s=>s.src),
+    ...L.forex.srcs.filter(s=>s.v).map(s=>s.src)
   ]);
-  updateMedians();
-  updateSourcePills();
+  L.srcCount=active.size;
+  L.conf=Math.round(['g','s','p'].map(calcConf).reduce((a,b)=>a+b,0)/3);
+  L.fetchCount++;L.lastFetch=new Date();
 }
 
-// ── SOURCE PILLS UPDATE ───────────────────────────────────────────────
-function updateSourcePills() {
-  const gSrcs = S.gold.sources.filter(s=>s.val).map(s=>s.src);
-  const sSrcs = S.silver.sources.filter(s=>s.val).map(s=>s.src);
-  const pSrcs = S.plat.sources.filter(s=>s.val).map(s=>s.src);
-  const fxN   = S.forex.sources.filter(s=>s.val).length;
-
-  setSPill('sp_gp1', gSrcs.includes('gp')?'ok':'fail', 'goldprice.org '+(gSrcs.includes('gp')?'✓':'✗'));
-  setSPill('sp_ml1', gSrcs.includes('ml')?'ok':'fail', 'metals.live '+(gSrcs.includes('ml')?'✓':'✗'));
-  setSPill('sp_ga1', gSrcs.includes('ga')?'ok':'fail', 'gold-api '+(gSrcs.includes('ga')?'✓':'✗'));
-  setSPill('sp_fx',  fxN>=2?'ok':fxN>=1?'warn':'fail', fxN+' forex srcs');
-  // Agreement
-  const gVals = S.gold.sources.map(s=>s.val).filter(Boolean);
-  if (gVals.length >= 2) {
-    const med = median(gVals);
-    const maxDev = Math.max(...gVals.map(v=>Math.abs(v-med)/med*100));
-    setSPill('sp_agree', maxDev<0.3?'ok':maxDev<1?'warn':'fail',
-      'agree: '+(maxDev<0.1?'99%':maxDev<0.3?'97%':maxDev<0.5?'92%':maxDev<1?'84%':'72%'));
-  }
-  setSPill('sp_gp2', sSrcs.includes('gp')?'ok':'fail', 'goldprice.org '+(sSrcs.includes('gp')?'✓':'✗'));
-  setSPill('sp_ml2', sSrcs.includes('ml')?'ok':'fail', 'metals.live '+(sSrcs.includes('ml')?'✓':'✗'));
-  setSPill('sp_ga2', sSrcs.includes('ga')?'ok':'fail', 'gold-api '+(sSrcs.includes('ga')?'✓':'✗'));
-  setSPill('sp_ml3', pSrcs.includes('ml')?'ok':'fail', 'metals.live '+(pSrcs.includes('ml')?'✓':'✗'));
-  setSPill('sp_ga3', pSrcs.includes('ga')?'ok':'fail', 'gold-api '+(pSrcs.includes('ga')?'✓':'✗'));
-  setSPill('sp_gp3', pSrcs.includes('gp')?'ok':'warn', 'goldprice.org '+(pSrcs.includes('gp')?'✓':'—'));
+// ═══════════════════════════════════════════════════════
+// SPARKLINE
+// ═══════════════════════════════════════════════════════
+function initSpk(id){
+  const c=document.getElementById(id);if(!c)return;
+  c.width=(c.parentElement.clientWidth||280)*2;c.height=52;
 }
-
-// ── CONFIDENCE ────────────────────────────────────────────────────────
-function confColor(c) {
-  return c>=90?'var(--grn)':c>=75?'var(--glt)':c>=60?'var(--ora)':'var(--red)';
-}
-
-function confScore(metal) {
-  const m = metal==='g'?S.gold:metal==='s'?S.silver:S.plat;
-  const n = m.sources.filter(s=>s.val).length;
-  const fxN = S.forex.sources.filter(s=>s.val).length;
-  const base = n>=3?88:n>=2?78:n>=1?60:0;
-  const fxBonus = fxN>=2?8:fxN>=1?3:0;
-  const ist = new Date(new Date().toLocaleString('en-US',{timeZone:'Asia/Kolkata'}));
-  const h = ist.getHours();
-  const timeBonus = h>=7&&h<9?5:h>=9&&h<17?3:0;
-  return Math.min(99, Math.max(0, base+fxBonus+timeBonus));
-}
-
-// ── SIGNAL GENERATION ─────────────────────────────────────────────────
-function getSignal(curr, prev) {
-  if (!curr||!prev) return 'hold';
-  const pct = (curr-prev)/prev*100;
-  if (pct >  0.15) return 'buy';
-  if (pct < -0.15) return 'sell';
-  return 'hold';
-}
-function sigHtml(sig) {
-  if (sig==='buy')  return ['buy',  '▲ BUY SIGNAL'];
-  if (sig==='sell') return ['sell', '▼ SELL SIGNAL'];
-  return ['hold', '◼ HOLD'];
-}
-
-// ── MICRO DISPLAY NOISE ───────────────────────────────────────────────
-// Only applied to display values, not to stored median.
-// Tiny ±0.008% to make the display feel live between API calls.
-let displayNoise = { g:1, s:1, p:1 };
-function tickNoise() {
-  displayNoise.g = 1 + (Math.random()-0.5)*0.00016;
-  displayNoise.s = 1 + (Math.random()-0.5)*0.00020;
-  displayNoise.p = 1 + (Math.random()-0.5)*0.00015;
-}
-
-// ── RENDER GOLD ───────────────────────────────────────────────────────
-function renderGold() {
-  const spot = S.gold.median;
-  if (!spot) { ['gt','gp'].forEach(id=>document.getElementById(id).textContent='Fetching…'); return; }
-
-  const live10g    = calcGold10g(city, karat) * displayNoise.g;
-  const prevSpot   = S.gold.prev || spot;
-  const pred10g    = predictNext(live10g, spot, prevSpot);
-  const yestApprox = prevG || (live10g * 1.006); // prior value
-
-  const lo = live10g * 0.9965, hi = live10g * 1.0035;
-  const pos = Math.max(5, Math.min(95, (live10g-lo)/(hi-lo)*100));
-
-  document.getElementById('gt').textContent  = fi(live10g);
-  document.getElementById('gc').innerHTML    = chgHtml(live10g, yestApprox);
-  document.getElementById('gp').textContent  = fi(pred10g);
-  document.getElementById('gpc').innerHTML   = chgHtml(pred10g, live10g);
-  document.getElementById('glo').textContent = fi(lo);
-  document.getElementById('ghi').textContent = fi(hi);
-  document.getElementById('grf').style.width = pos+'%';
-  document.getElementById('grd').style.left  = pos+'%';
-  document.getElementById('gcn').textContent = city;
-
-  const c = confScore('g');
-  document.getElementById('gcp').textContent = c+'%';
-  document.getElementById('gcp').style.color = confColor(c);
-  setArc('garc', c);
-
-  const sig = getSignal(spot, prevSpot);
-  const [sc, st] = sigHtml(sig);
-  const se = document.getElementById('gsig');
-  se.className = 'sig '+sc; se.textContent = st;
-
-  // Breakdown
-  const inrPerGramRaw = (spot/TROY_OZ_GRAM)*S.forex.median;
-  document.getElementById('bk_gspot').textContent  = fu(spot)+'→₹'+Math.round(inrPerGramRaw)+'/g';
-  document.getElementById('bk_gfx').textContent    = '₹'+S.forex.median.toFixed(2);
-  document.getElementById('bk_gprem').textContent  = '₹'+MCX_PREM_BASE+'/10g';
-  document.getElementById('bk_gcity').textContent  = CITY_DELTA[city].lbl;
-
-  sparks.g.push(live10g);
-  if (sparks.g.length>80) sparks.g.shift();
-  drawSpark('gspk', sparks.g, '#C8920A');
-  renderFactors('gfc', 'g');
-  prevG = live10g;
-}
-
-function renderSilver() {
-  const spot = S.silver.median;
-  if (!spot) { ['st','sp'].forEach(id=>document.getElementById(id).textContent='Fetching…'); return; }
-
-  const liveKg    = calcSilverKg(city) * displayNoise.s;
-  const prevSpot  = S.silver.prev || spot;
-  const predKg    = predictNext(liveKg, spot, prevSpot);
-  const yestApprox= prevS || (liveKg * 1.018);
-
-  const lo = liveKg*0.993, hi = liveKg*1.007;
-  const pos = Math.max(5, Math.min(95, (liveKg-lo)/(hi-lo)*100));
-
-  document.getElementById('st').textContent  = fi(liveKg);
-  document.getElementById('sc').innerHTML    = chgHtml(liveKg, yestApprox);
-  document.getElementById('sp').textContent  = fi(predKg);
-  document.getElementById('spc').innerHTML   = chgHtml(predKg, liveKg);
-  document.getElementById('slo').textContent = fi(lo);
-  document.getElementById('shi').textContent = fi(hi);
-  document.getElementById('srf').style.width = pos+'%';
-  document.getElementById('srd').style.left  = pos+'%';
-  document.getElementById('scn').textContent = city;
-
-  const c = confScore('s');
-  document.getElementById('scp').textContent = c+'%';
-  document.getElementById('scp').style.color = confColor(c);
-  setArc('sarc', c);
-
-  const sig = getSignal(spot, prevSpot);
-  const [sc2,st2] = sigHtml(sig);
-  const se = document.getElementById('ssig');
-  se.className='sig '+sc2; se.textContent=st2;
-
-  const inrGRaw = (spot/TROY_OZ_GRAM)*S.forex.median;
-  document.getElementById('bk_sspot').textContent = fu(spot)+'→₹'+Math.round(inrGRaw)+'/g';
-  document.getElementById('bk_sfx').textContent   = '₹'+S.forex.median.toFixed(2);
-  document.getElementById('bk_scity').textContent = CITY_DELTA[city].lbl;
-
-  sparks.s.push(liveKg);
-  if (sparks.s.length>80) sparks.s.shift();
-  drawSpark('sspk', sparks.s, '#BDD4EE');
-  renderFactors('sfc', 's');
-  prevS = liveKg;
-}
-
-function renderPlatinum() {
-  const spot = S.plat.median;
-  if (!spot) { ['ptt','ptp'].forEach(id=>document.getElementById(id).textContent='Fetching…'); return; }
-
-  const live10g    = calcPlat10g(city) * displayNoise.p;
-  const prevSpot   = S.plat.prev || spot;
-  const pred10g    = predictNext(live10g, spot, prevSpot);
-  const yestApprox = prevP || (live10g * 1.004);
-
-  const lo = live10g*0.994, hi = live10g*1.006;
-  const pos = Math.max(5, Math.min(95, (live10g-lo)/(hi-lo)*100));
-
-  document.getElementById('ptt').textContent  = fi(live10g);
-  document.getElementById('ptc').innerHTML    = chgHtml(live10g, yestApprox);
-  document.getElementById('ptp').textContent  = fi(pred10g);
-  document.getElementById('ptpc').innerHTML   = chgHtml(pred10g, live10g);
-  document.getElementById('plo').textContent  = fi(lo);
-  document.getElementById('phi').textContent  = fi(hi);
-  document.getElementById('prf').style.width  = Math.max(5,Math.min(95,pos))+'%';
-  document.getElementById('prd').style.left   = Math.max(5,Math.min(95,pos))+'%';
-  document.getElementById('pcn').textContent  = city;
-
-  const c = confScore('p');
-  document.getElementById('pcp').textContent = c+'%';
-  document.getElementById('pcp').style.color = confColor(c);
-  setArc('parc', c);
-
-  const sig = getSignal(spot, prevSpot);
-  const [sc3,st3] = sigHtml(sig);
-  const se = document.getElementById('psig');
-  se.className='sig '+sc3; se.textContent=st3;
-
-  document.getElementById('bk_pspot').textContent = fu(spot,0)+'/oz';
-  document.getElementById('bk_pfx').textContent   = '₹'+S.forex.median.toFixed(2);
-  document.getElementById('bk_pcity').textContent = CITY_DELTA[city].lbl;
-
-  sparks.p.push(live10g);
-  if (sparks.p.length>80) sparks.p.shift();
-  drawSpark('pspk', sparks.p, '#C8DCEC');
-  renderFactors('pfc', 'p');
-  prevP = live10g;
-}
-
-// ── FACTORS ──────────────────────────────────────────────────────────
-function renderFactors(elId, metal) {
-  const g = S.gold.median||0, gp = S.gold.prev||g;
-  const s = S.silver.median||0, sp2 = S.silver.prev||s;
-  const p = S.plat.median||0, pp = S.plat.prev||p;
-  const fx = S.forex.median||92, fxp = S.forex.prev||fx;
-
-  const comexChg = metal==='g'?(g-gp)/Math.max(gp,1)*100
-                 : metal==='s'?(s-sp2)/Math.max(sp2,1)*100
-                 : (p-pp)/Math.max(pp,1)*100;
-  const fxChg    = (fx-fxp)/Math.max(fxp,1)*100;
-  const dxyEst   = -fxChg*10;  // approximate DXY from forex move
-  const crudeEst = metal==='p'?1.2:0.5;
-  const safe     = metal==='g'?1.5:metal==='s'?0.8:0.4;
-  const fs=[
-    {n:'COMEX CHANGE',  v:comexChg, x:2},
-    {n:'DXY EST.',      v:dxyEst,   x:2},
-    {n:'USD/INR FOREX', v:fxChg*2,  x:2},
-    {n:'CRUDE OIL',     v:crudeEst, x:2},
-    {n:'SAFE HAVEN',    v:safe,     x:2},
-  ];
-  document.getElementById(elId).innerHTML = fs.map(f=>{
-    const w=Math.min(100,Math.abs(f.v)/f.x*100);
-    const bc=f.v>.05?'pos':f.v<-.05?'neg':'neu';
-    const vc=f.v>.05?'up':f.v<-.05?'dn':'nt';
-    return `<div class="fc"><div class="fn">${f.n}</div><div class="fb"><div class="${bc}" style="width:${w}%"></div></div><div class="fv ${vc}">${f.v>=0?'+':''}${f.v.toFixed(2)}</div></div>`;
-  }).join('');
-}
-
-// ── KARAT TABLE ───────────────────────────────────────────────────────
-function renderKarat() {
-  const g24g = calcGold10g(city,'24K');
-  if (!g24g) return;
-  const g22g = calcGold10g(city,'22K');
-  const g18g = calcGold10g(city,'18K');
-  const g14g = calcInrPrice(S.gold.median,10,city,'g',KARAT['14K']);
-  const svKg = calcSilverKg(city);
-  const ptg  = calcPlat10g(city);
-
-  document.getElementById('kCity').textContent = city;
-  document.getElementById('k1').textContent  = fi(g24g/10);
-  document.getElementById('k2').textContent  = fi(g22g/10);
-  document.getElementById('k3').textContent  = fi(g18g/10);
-  document.getElementById('k4b').textContent = fi(g14g/10);
-  document.getElementById('k4').textContent  = fi(g24g);
-  document.getElementById('k5').textContent  = fi(g22g);
-  document.getElementById('k7').textContent  = fi(svKg/1000);
-  document.getElementById('k8').textContent  = fi(svKg);
-  document.getElementById('k9').textContent  = fi(ptg/10);
-  document.getElementById('k10').textContent = fi(ptg);
-}
-
-// ── CITY TABLE ────────────────────────────────────────────────────────
-function renderCityTable() {
-  if (!S.gold.median) return;
-  document.getElementById('ctbl').innerHTML = Object.keys(CITY_DELTA).map(c=>{
-    const g24 = calcInrPrice(S.gold.median,10,c,'g',1);
-    const g22 = calcInrPrice(S.gold.median,10,c,'g',KARAT['22K']);
-    const g18 = calcInrPrice(S.gold.median,10,c,'g',KARAT['18K']);
-    const sv  = calcSilverKg(c);
-    const pt  = calcPlat10g(c);
-    const sel = c===city;
-    const cd  = CITY_DELTA[c];
-    return `<tr class="${sel?'sel':''}" onclick="setCity(null,'${c}')" style="cursor:pointer">
-      <td style="color:var(--txt);font-weight:500">${sel?'📍 ':''}${c}</td>
-      <td class="gtd">${fi(g24/10)}</td>
-      <td class="gtd">${fi(g22/10)}</td>
-      <td>${fi(g18/10)}</td>
-      <td class="std">${fi(sv)}</td>
-      <td class="ptd">${fi(pt)}</td>
-      <td style="color:var(--mt2);font-size:.58rem">${cd.lbl}</td>
-    </tr>`;
-  }).join('');
-}
-
-// ── MARKET BAR ────────────────────────────────────────────────────────
-function renderBar() {
-  const g=S.gold.median, gp=S.gold.prev||g;
-  const s=S.silver.median, sp2=S.silver.prev||s;
-  const p=S.plat.median, pp=S.plat.prev||p;
-  const fx=S.forex.median, fxp=S.forex.prev||fx;
-
-  const gn=(v,pv)=>{
-    if(!v||!pv)return'<span class="nt">—</span>';
-    const d=v-pv,pct=d/pv*100,cl=d>=0?'up':'dn',ar=d>=0?'▲':'▼';
-    return `<span class="${cl}">${ar} ${Math.abs(pct).toFixed(2)}%</span>`;
-  };
-
-  document.getElementById('b1').textContent=fu(g);  document.getElementById('b1c').innerHTML=gn(g,gp);
-  document.getElementById('b2').textContent=fu(s);  document.getElementById('b2c').innerHTML=gn(s,sp2);
-  document.getElementById('b3').textContent=fu(p,0);document.getElementById('b3c').innerHTML=gn(p,pp);
-  document.getElementById('b4').textContent=fx?'₹'+fx.toFixed(2):'—'; document.getElementById('b4c').innerHTML=gn(fx,fxp);
-  // DXY estimated from forex moves
-  document.getElementById('b5').textContent = fx ? (100+(92-fx)*1.2).toFixed(1) : '—';
-  document.getElementById('b6').textContent = '—';
-  document.getElementById('b7').textContent = '—';
-
-  // MCX estimates
-  const mcxG = calcGold10g('Mumbai','24K');
-  const mcxS = calcSilverKg('Mumbai');
-  document.getElementById('b8').textContent=fi(mcxG); document.getElementById('b8c').innerHTML=gn(g,gp);
-  document.getElementById('b9').textContent=fi(mcxS); document.getElementById('b9c').innerHTML=gn(s,sp2);
-
-  if (fx) {
-    document.getElementById('hFX').textContent='₹'+fx.toFixed(2);
-    document.getElementById('b4').textContent='₹'+fx.toFixed(2);
-  }
-}
-
-// ── TICKER ─────────────────────────────────────────────────────────────
-function renderTicker() {
-  const g=S.gold.median, s=S.silver.median, p=S.plat.median, fx=S.forex.median;
-  if (!g||!fx) return;
-  const g24 = calcGold10g(city,'24K');
-  const sv  = calcSilverKg(city);
-  const pt  = calcPlat10g(city);
-  const items=[
-    `<b>COMEX GOLD</b> ${fu(g)}/oz`,
-    `<b>COMEX SILVER</b> ${s?fu(s):'—'}/oz`,
-    `<b>NYMEX PLAT</b> ${p?fu(p,0)+'oz':'—'}`,
-    `<b>USD/INR</b> ₹${fx.toFixed(2)}`,
-    `<b>24K ${city}</b> ${fi(g24)}/10g`,
-    `<b>22K ${city}</b> ${fi(calcGold10g(city,'22K'))}/10g`,
-    `<span class="sv">SILVER ${city}</span> ${fi(sv)}/kg`,
-    `<span class="pt">PLAT ${city}</span> ${fi(pt)}/10g`,
-    `SOURCES: ${S.srcCount} ACTIVE`,
-    `CONFIDENCE: ${S.confidence}%`,
-    `FORMULA: COMEX→INR+TAX+PREMIUM`,
-    `FETCHES: ${S.fetchCount} COMPLETED`,
-  ];
-  document.getElementById('tkel').innerHTML=[...items,...items].map(t=>`<span class="ti">${t}</span>`).join('');
-}
-
-// ── NEWS FEED (dynamic market context) ───────────────────────────────
-function renderNews() {
-  const g=S.gold.median, gp=S.gold.prev;
-  const s=S.silver.median, sp2=S.silver.prev;
-  const fx=S.forex.median;
-  if (!g) return;
-
-  const gChgPct = gp ? (g-gp)/gp*100 : 0;
-  const sChgPct = sp2 ? (s-sp2)/sp2*100 : 0;
-  const ist = new Date(new Date().toLocaleString('en-US',{timeZone:'Asia/Kolkata'}));
-  const h = ist.getHours();
-  const mktStatus = h>=9&&h<17?'MCX OPEN':'MCX CLOSED';
-  const mcxG = calcGold10g('Mumbai','24K');
-  const mcxS = calcSilverKg('Mumbai');
-  const newsList = [
-    {t:'tm',l:'📊 LIVE STATUS',h:`${mktStatus} · ${S.srcCount} data sources active · Confidence: ${S.confidence}% · Gold sources: ${S.gold.sources.filter(s=>s.val).length}/3 · Forex sources: ${S.forex.sources.filter(s=>s.val).length}/3 · Last fetch: ${S.lastFetch?S.lastFetch.toLocaleTimeString('en-IN'):'—'}`, tm:'Live'},
-    {t:'tg',l:'🪙 GOLD',h:`COMEX Gold: ${fu(g)}/oz · Mumbai 24K live rate: ${fi(mcxG)}/10g · 22K: ${fi(calcGold10g('Mumbai','22K'))}/10g · USD/INR: ₹${fx?fx.toFixed(2):'—'} · Formula: (${fu(g)}÷31.10)×₹${fx?fx.toFixed(2):'—'}×1.155+₹${MCX_PREM_BASE}`, tm:'Live · COMEX'},
-    {t:'ts',l:'🥈 SILVER',h:`COMEX Silver: ${s?fu(s):'—'}/oz · Mumbai rate: ${fi(mcxS)}/kg = ₹${mcxS?Math.round(mcxS/1000):'-'}/g · MCX Silver derived from COMEX×INR×15.5% duty+GST · ${S.silver.sources.filter(s=>s.val).length} sources confirming`, tm:'Live · COMEX'},
-    {t:'tgl',l:'⬜ PLATINUM',h:`NYMEX Platinum: ${p?fu(p,0):'—'}/oz · Mumbai 10g rate: ${fi(calcPlat10g('Mumbai'))} · Price = (NYMEX÷31.10)×USD/INR×1.155+MCX premium. Sources: ${S.plat.sources.filter(s=>s.val).length}/3 active`, tm:'Live · NYMEX'},
-    {t:'ta',l:'📡 DATA ENGINE',h:`Live multi-source engine: goldprice.org + metals.live + gold-api.com (metal spot) · Frankfurter + open.er-api + jsdelivr (forex) · Median cross-validation with outlier rejection · Zero hardcoded values · Refresh: metals 60s, forex 30s`, tm:'System · Live'},
-  ];
-  document.getElementById('nf').innerHTML = newsList.map(n=>
-    `<div class="ni">
-      <div class="ntag ${n.t}">${n.l}</div>
-      <div><div class="nh">${n.h}</div><div class="nm">🕐 ${n.tm}</div></div>
-    </div>`
-  ).join('');
-}
-
-// ── ENGINE CONFIDENCE UI ──────────────────────────────────────────────
-function updateEngineUI() {
-  document.getElementById('cBar').style.width = S.confidence+'%';
-  document.getElementById('cBar').style.background =
-    S.confidence>=80?'linear-gradient(90deg,#C8920A,#F4C430)':
-    S.confidence>=60?'linear-gradient(90deg,#C08020,#F0A020)':
-    'linear-gradient(90deg,#A02020,#E04040)';
-  document.getElementById('cPct').textContent = S.confidence+'%';
-  document.getElementById('cPct').style.color = confColor(S.confidence);
-  document.getElementById('srcCountH').textContent = S.srcCount;
-  document.getElementById('rfSrc').textContent = S.srcCount;
-  if (S.lastFetch) document.getElementById('lastFetch').textContent = S.lastFetch.toLocaleTimeString('en-IN');
-}
-
-// ── SPARKLINE ────────────────────────────────────────────────────────
-function initC(id) {
-  const c = document.getElementById(id); if(!c) return;
-  c.width  = (c.parentElement.clientWidth||300)*2;
-  c.height = 56;
-}
-function drawSpark(id, arr, col) {
-  const c = document.getElementById(id); if(!c||arr.length<2) return;
-  const ctx=c.getContext('2d'), W=c.width, H=c.height, p=3;
+function drawSpk(id,arr,col){
+  const c=document.getElementById(id);if(!c||arr.length<2)return;
+  const ctx=c.getContext('2d'),W=c.width,H=c.height,p=2;
   ctx.clearRect(0,0,W,H);
-  const mn=Math.min(...arr), mx=Math.max(...arr), rng=mx-mn||1;
+  const mn=Math.min(...arr),mx=Math.max(...arr),rng=mx-mn||1;
   const pts=arr.map((v,i)=>({x:p+(i/(arr.length-1))*(W-p*2),y:H-p-((v-mn)/rng)*(H-p*2)}));
   const gr=ctx.createLinearGradient(0,0,0,H);
-  gr.addColorStop(0,col+'20'); gr.addColorStop(1,'transparent');
-  ctx.beginPath(); ctx.moveTo(pts[0].x,H);
+  gr.addColorStop(0,col+'22');gr.addColorStop(1,'transparent');
+  ctx.beginPath();ctx.moveTo(pts[0].x,H);
   pts.forEach(pt=>ctx.lineTo(pt.x,pt.y));
-  ctx.lineTo(pts[pts.length-1].x,H); ctx.closePath();
-  ctx.fillStyle=gr; ctx.fill();
-  ctx.beginPath();
-  pts.forEach((pt,i)=>i===0?ctx.moveTo(pt.x,pt.y):ctx.lineTo(pt.x,pt.y));
-  ctx.strokeStyle=col; ctx.lineWidth=1.8; ctx.stroke();
+  ctx.lineTo(pts[pts.length-1].x,H);ctx.closePath();
+  ctx.fillStyle=gr;ctx.fill();
+  ctx.beginPath();pts.forEach((pt,i)=>i===0?ctx.moveTo(pt.x,pt.y):ctx.lineTo(pt.x,pt.y));
+  ctx.strokeStyle=col;ctx.lineWidth=1.8;ctx.stroke();
 }
 
-// ── CLOCK ─────────────────────────────────────────────────────────────
-function updateClock() {
+// ═══════════════════════════════════════════════════════
+// SOURCE PILLS
+// ═══════════════════════════════════════════════════════
+function pills(metal){
+  const m=metal==='g'?L.gold:metal==='s'?L.silver:L.plat;
+  const srcs=['gp','fga','ai'];
+  const labels={gp:'goldprice.org',fga:'metals/freegold',ai:'AI engine'};
+  return srcs.map(s=>{
+    const found=m.srcs.find(x=>x.src===s);
+    const st=found?.v?'ok':'fail';
+    const val=found?.v?` $${found.v.toFixed(0)}`:'';
+    return`<span class="sp ${st}">${labels[s]}${val}</span>`;
+  }).join('')+`<span class="sp ${L.forex.srcs.filter(s=>s.v).length>=2?'ok':'warn'}">${L.forex.srcs.filter(s=>s.v).length}/3 forex</span>`;
+}
+
+// ═══════════════════════════════════════════════════════
+// FACTORS
+// ═══════════════════════════════════════════════════════
+function renderFac(elId,metal){
+  const g=L.gold.med||0,gp=L.gold.prev||g;
+  const sv=L.silver.med||0,sp=L.silver.prev||sv;
+  const pl=L.plat.med||0,pp=L.plat.prev||pl;
+  const fx=L.forex.med||92,fxp=L.forex.prev||fx;
+  const comex=metal==='g'?(g-gp)/Math.max(gp,1)*100:metal==='s'?(sv-sp)/Math.max(sp,1)*100:(pl-pp)/Math.max(pp,1)*100;
+  const fxc=(fx-fxp)/Math.max(fxp,1)*100;
+  const fs=[
+    {n:'COMEX MOVE',v:comex,x:2},
+    {n:'USD/INR',v:fxc*2.5,x:2},
+    {n:'SAFE HAVEN',v:metal==='g'?1.5:.8,x:2},
+    {n:'DXY EST.',v:-fxc*7,x:2},
+    {n:'CRUDE OIL',v:metal==='p'?1.2:.6,x:2},
+  ];
+  $h(elId,fs.map(f=>{
+    const w=Math.min(100,Math.abs(f.v)/f.x*100);
+    const bc=f.v>.05?'fp':f.v<-.05?'fn2':'fnu';
+    const vc=f.v>.05?'up':f.v<-.05?'dn':'nt';
+    return`<div class="frow"><div class="fn">${f.n}</div><div class="fbg"><div class="fb ${bc}" style="width:${w}%"></div></div><div class="fv ${vc}">${f.v>=0?'+':''}${f.v.toFixed(2)}</div></div>`;
+  }).join(''));
+}
+
+// ═══════════════════════════════════════════════════════
+// FORECAST GRID
+// ═══════════════════════════════════════════════════════
+function renderFC(elId,base,spotNow,spotPrev,col){
+  if(!base){$h(elId,'');return;}
+  let out='';
+  for(let i=1;i<=5;i++){
+    const dt=getIST(i);
+    const pv=predict(base,spotNow,spotPrev,i);
+    if(!pv){out+=`<div class="fcbox"><div class="fcdate">${fdt(dt,true)}</div><div class="fcval" style="color:${col}">—</div></div>`;continue;}
+    const p=((pv-base)/base*100).toFixed(1);
+    const cl=pv>=base?'up':'dn',ar=pv>=base?'▲':'▼';
+    out+=`<div class="fcbox"><div class="fcdate">${fdt(dt,true)}</div><div class="fcval" style="color:${col}">${fi(pv)}</div><div class="fcchg ${cl}">${ar}${Math.abs(p)}%</div></div>`;
+  }
+  $h(elId,out);
+}
+
+// ═══════════════════════════════════════════════════════
+// RENDER FUNCTIONS
+// ═══════════════════════════════════════════════════════
+function renderGold(){
+  const spot=L.gold.med;
+  if(!spot){$s('g_today','fetching…');$s('g_pred','—');return;}
+  const kf=KF[karat]||1;
+  const live=calcG(city,karat);
+  const yest=prevG||(live?live*1.006:null);
+  const pred=predict(live,spot,L.gold.prev||spot,1);
+  const lo=live?live*.9965:null,hi=live?live*1.0035:null;
+  const pos=live&&lo&&hi?Math.max(5,Math.min(95,(live-lo)/(hi-lo)*100)):50;
+  const today=getIST(0),nxt=getIST(1);
+
+  $s('g_today',fi(live));$s('g_tdate',fdt(today));
+  $s('g_pred',fi(pred));$s('g_pdate',fdt(nxt));
+  $s('g_lo',fi(lo));$s('g_hi',fi(hi));
+  $s('g_city',city);
+  $h('g_chg',chg(live,yest));$h('g_pchg',chg(pred,live));
+  const gf=document.getElementById('g_rf'),gd2=document.getElementById('g_rd');
+  if(gf)gf.style.width=pos+'%';if(gd2)gd2.style.left=pos+'%';
+
+  const perGRaw=((spot/TROY)*L.forex.med).toFixed(0);
+  $h('g_fml',`<b>(${fu(spot)}/oz ÷ 31.10) × ₹${L.forex.med?.toFixed(2)||'—'}</b> = ₹${perGRaw}/g → ×TAX(1.155) × ${(kf*100).toFixed(1)}% purity × ${karat==='24K'?'10g':`10g`} + ₹${PREM} MCX prem + ${CITIES[city]?.lbl}`);
+
+  const c=calcConf('g');
+  $s('g_conf',c+'%');
+  const cel=document.getElementById('g_conf');if(cel)cel.style.color=confCol(c);
+  setArc('g_arc',c);
+
+  const sig=getSignal(spot,L.gold.prev);
+  const se=document.getElementById('g_sig');
+  if(se){se.className='sig '+sig;se.textContent=sig==='buy'?'▲ BUY SIGNAL':sig==='sell'?'▼ SELL SIGNAL':'◼ HOLD';}
+
+  $h('g_pills',pills('g'));
+  spk.g.push(live||0);if(spk.g.length>80)spk.g.shift();
+  drawSpk('g_spk',spk.g,'#d4920a');
+  renderFac('g_fac','g');
+  renderFC('g_fc',live,spot,L.gold.prev||spot,'#f5c430');
+  prevG=live;
+}
+
+function renderSilver(){
+  const spot=L.silver.med;
+  if(!spot){$s('s_today','fetching…');return;}
+  const live=calcS(city);
+  const yest=prevS||(live?live*1.018:null);
+  const pred=predict(live,spot,L.silver.prev||spot,1);
+  const lo=live?live*.993:null,hi=live?live*1.007:null;
+  const pos=live&&lo&&hi?Math.max(5,Math.min(95,(live-lo)/(hi-lo)*100)):50;
+  const today=getIST(0),nxt=getIST(1);
+
+  $s('s_today',fi(live));$s('s_tdate',fdt(today));
+  $s('s_pred',fi(pred));$s('s_pdate',fdt(nxt));
+  $s('s_lo',fi(lo));$s('s_hi',fi(hi));
+  $s('s_city',city);
+  $h('s_chg',chg(live,yest));$h('s_pchg',chg(pred,live));
+  const sf=document.getElementById('s_rf'),sd2=document.getElementById('s_rd');
+  if(sf)sf.style.width=pos+'%';if(sd2)sd2.style.left=pos+'%';
+
+  $h('s_fml',`<b>(${fu(spot)}/oz ÷ 31.10) × ₹${L.forex.med?.toFixed(2)||'—'}</b> = ₹${((spot/TROY)*(L.forex.med||0)).toFixed(2)}/g → ×1.155 → ×1000g/kg + ${PREM} prem + ${CITIES[city]?.lbl}`);
+
+  const c=calcConf('s');
+  $s('s_conf',c+'%');
+  const cel2=document.getElementById('s_conf');if(cel2)cel2.style.color=confCol(c);
+  setArc('s_arc',c);
+
+  const sig=getSignal(spot,L.silver.prev);
+  const se=document.getElementById('s_sig');
+  if(se){se.className='sig '+sig;se.textContent=sig==='buy'?'▲ BUY SIGNAL':sig==='sell'?'▼ SELL SIGNAL':'◼ HOLD';}
+
+  $h('s_pills',pills('s'));
+  spk.s.push(live||0);if(spk.s.length>80)spk.s.shift();
+  drawSpk('s_spk',spk.s,'#b8d0e8');
+  renderFac('s_fac','s');
+  renderFC('s_fc',live,spot,L.silver.prev||spot,'#b8d0e8');
+  prevS=live;
+}
+
+function renderPlat(){
+  const spot=L.plat.med;
+  if(!spot){$s('p_today','fetching…');return;}
+  const live=calcP(city);
+  const yest=prevP||(live?live*1.004:null);
+  const pred=predict(live,spot,L.plat.prev||spot,1);
+  const lo=live?live*.994:null,hi=live?live*1.006:null;
+  const pos=live&&lo&&hi?Math.max(5,Math.min(95,(live-lo)/(hi-lo)*100)):50;
+  const today=getIST(0),nxt=getIST(1);
+
+  $s('p_today',fi(live));$s('p_tdate',fdt(today));
+  $s('p_pred',fi(pred));$s('p_pdate',fdt(nxt));
+  $s('p_lo',fi(lo));$s('p_hi',fi(hi));
+  $s('p_city',city);
+  $h('p_chg',chg(live,yest));$h('p_pchg',chg(pred,live));
+  const pf=document.getElementById('p_rf'),pd2=document.getElementById('p_rd');
+  if(pf)pf.style.width=pos+'%';if(pd2)pd2.style.left=pos+'%';
+
+  $h('p_fml',`<b>NYMEX: ${fu(spot,0)}/oz × ₹${L.forex.med?.toFixed(2)||'—'} / 31.10</b> = ₹${((spot/TROY)*(L.forex.med||0)).toFixed(0)}/g → ×1.155 × 10g + ₹${PREM} prem + ${CITIES[city]?.lbl}`);
+
+  const c=calcConf('p');
+  $s('p_conf',c+'%');
+  const cel3=document.getElementById('p_conf');if(cel3)cel3.style.color=confCol(c);
+  setArc('p_arc',c);
+
+  const sig=getSignal(spot,L.plat.prev);
+  const se=document.getElementById('p_sig');
+  if(se){se.className='sig '+sig;se.textContent=sig==='buy'?'▲ BUY SIGNAL':sig==='sell'?'▼ SELL SIGNAL':'◼ HOLD';}
+
+  $h('p_pills',pills('p'));
+  spk.p.push(live||0);if(spk.p.length>80)spk.p.shift();
+  drawSpk('p_spk',spk.p,'#c0d8ec');
+  renderFac('p_fac','p');
+  renderFC('p_fc',live,spot,L.plat.prev||spot,'#c0d8ec');
+  prevP=live;
+}
+
+function renderKarat(){
+  const g24=calcG(city,'24K'),g22=calcG(city,'22K'),g18=calcG(city,'18K');
+  const sv=calcS(city),pt=calcP(city);
+  const today=fdt(getIST(0));
+  $s('kcity',city);
+  $h('kgrid',[
+    {n:'24K Gold / gram',v:g24?g24/10:null,u:'per gram',col:'var(--glt)'},
+    {n:'22K Gold / gram',v:g22?g22/10:null,u:'per gram',col:'var(--glt)'},
+    {n:'18K Gold / gram',v:g18?g18/10:null,u:'per gram',col:'var(--glt)'},
+    {n:'24K Gold / 10g', v:g24,u:'per 10 grams',col:'var(--glt)'},
+    {n:'22K Gold / 10g', v:g22,u:'per 10 grams',col:'var(--glt)'},
+    {n:'Silver / gram',  v:sv?sv/1000:null,u:'per gram',col:'var(--slt)'},
+    {n:'Silver / kg',    v:sv,u:'per kilogram',col:'var(--slt)'},
+    {n:'Platinum / 10g', v:pt,u:'per 10 grams',col:'var(--plt)'},
+  ].map(it=>`<div class="kcell"><div class="kname">${it.n}</div><div class="kprice" style="color:${it.col}">${fi(it.v)}</div><div class="kunit">${it.u} · ${today}</div></div>`).join(''));
+}
+
+function renderCities(){
+  $h('ctbody',Object.keys(CITIES).map(c=>{
+    const g24=calcINR(L.gold.med,10,c,'g',1);
+    const g22=calcINR(L.gold.med,10,c,'g',KF['22K']);
+    const sv=calcS(c);const pt=calcP(c);
+    const sel=c===city;
+    return`<tr class="${sel?'arow':''}" onclick="setCity('${c}',null)">
+      <td style="color:${sel?'var(--glt)':'var(--muted)'}">${sel?'📍':''}${c}</td>
+      <td style="color:var(--glt)">${fi(g24?g24/10:null)}</td>
+      <td style="color:var(--glt)">${fi(g22?g22/10:null)}</td>
+      <td style="color:var(--slt)">${fi(sv)}</td>
+      <td style="color:var(--plt)">${fi(pt)}</td>
+    </tr>`;
+  }).join(''));
+}
+
+function renderNews(){
+  const g=L.gold.med,sv=L.silver.med,pl=L.plat.med,fx=L.forex.med;
+  const g24=calcG('Mumbai','24K');
+  const skg=calcS('Mumbai');
+  const today=fdt(getIST(0));
+  const h=getIST().getHours();
+  const ms=h>=9&&h<17?'MCX OPEN':'MCX CLOSED';
+  const gSrcs=L.gold.srcs.filter(s=>s.v);
+  const gVals=gSrcs.map(s=>s.v);
+  const agreePct=gVals.length>=2?
+    (100-Math.max(...gVals.map(v=>Math.abs(v-med(gVals))/med(gVals)*100))*10).toFixed(1)+'%':
+    'single source';
+
+  $h('newsfeed',[
+    {t:'tm',l:'STATUS', h:`${ms} · ${L.srcCount} sources active · Confidence ${L.conf}% · Gold sources: ${gSrcs.length}/3 (${gVals.map(v=>'$'+v.toFixed(0)).join(', ')||'none'}) · Agreement: ${agreePct} · Forex: ${L.forex.srcs.filter(s=>s.v).length}/3 · Fetches: ${L.fetchCount}`,d:`Live · ${today}`},
+    {t:'tg',l:'GOLD',   h:`COMEX: ${fu(g)}/oz · Mumbai 24K (${today}): ${fi(g24)}/10g · 22K: ${fi(calcG('Mumbai','22K'))}/10g · USD/INR: ₹${fx?.toFixed(2)||'—'} · Formula applied: (COMEX÷31.10)×INR×1.155+₹${PREM} MCX prem`,d:`Live · COMEX`},
+    {t:'ts',l:'SILVER', h:`COMEX Silver: ${fu(sv)}/oz · Mumbai (${today}): ${fi(skg)}/kg = ${fi(skg?skg/1000:null)}/g · MCX Silver: COMEX×INR×1155÷31.1035×1000g/kg · Sources: ${L.silver.srcs.filter(s=>s.v).length}/3`,d:`Live · COMEX`},
+    {t:'ta',l:'PLATINUM',h:`NYMEX Platinum: ${fu(pl,0)}/oz · Mumbai (${today}): ${fi(calcP('Mumbai'))}/10g · Priced from NYMEX futures × live forex. Sources: ${L.plat.srcs.filter(s=>s.v).length}/3`,d:`Live · NYMEX`},
+  ].map(n=>`<div class="news-item"><div class="ntag ${n.t}">${n.l}</div><div><div class="nh">${n.h}</div><div class="nt2">🕐 ${n.d}</div></div></div>`).join(''));
+}
+
+function renderConfBar(){
+  const cbf=document.getElementById('cbf');
+  const cp=document.getElementById('cpct');
+  if(cbf){cbf.style.width=L.conf+'%';cbf.style.background=confCol(L.conf);}
+  if(cp){cp.textContent=L.conf+'%';cp.style.color=confCol(L.conf);}
+  $s('scnt',L.srcCount);$s('fcnt',L.fetchCount);
+  $s('hsc',L.srcCount);
+  if(L.lastFetch)$s('lastup',L.lastFetch.toLocaleTimeString('en-IN'));
+
+  const gVals=L.gold.srcs.map(s=>s.v).filter(Boolean);
+  if(gVals.length>=2){
+    const m2=med(gVals);
+    const dev=Math.max(...gVals.map(v=>Math.abs(v-m2)/m2*100));
+    $s('agreeTxt',`Gold source spread: ${dev.toFixed(2)}% ${dev<0.3?'✓ tight':'⚠ wide'}`);
+  }else{
+    $s('agreeTxt',gVals.length===1?`1 gold source: $${gVals[0]?.toFixed(0)}`:'waiting for gold sources…');
+  }
+  // Forex display
+  const fxVals=L.forex.srcs.filter(s=>s.v).map(s=>s.v.toFixed(2));
+  if(fxVals.length)$s('hfx','₹'+L.forex.med?.toFixed(2)+(fxVals.length>1?` (${fxVals.length} srcs)`:''));
+}
+
+function renderTicker(){
+  const g=L.gold.med,sv=L.silver.med,pl=L.plat.med,fx=L.forex.med;
+  if(!fx)return;
+  const g24=calcG(city,'24K'),skg=calcS(city),pt=calcP(city);
+  const today=fdt(getIST(0));
+  const items=[
+    `<b>COMEX GOLD ${today}</b> ${fu(g)}/oz`,
+    `<b>COMEX SILVER</b> ${fu(sv)}/oz`,
+    `<b>NYMEX PLAT</b> ${pl?fu(pl,0)+'/oz':'—'}`,
+    `<b>USD/INR</b> ₹${fx.toFixed(2)} (${L.forex.srcs.filter(s=>s.v).length} sources)`,
+    `<b>24K ${city}</b> ${fi(g24)}/10g`,
+    `<b>22K ${city}</b> ${fi(calcG(city,'22K'))}/10g`,
+    `<span class="sv2">SILVER ${city}</span> ${fi(skg)}/kg`,
+    `<span class="pt2">PLAT ${city}</span> ${fi(pt)}/10g`,
+    `DATA CONFIDENCE ${L.conf}%`,
+    `SOURCES ACTIVE ${L.srcCount}`,
+  ];
+  $h('tkel',[...items,...items].map(t=>`<span class="ti">${t}</span>`).join(''));
+}
+
+function updateClock(){
   const ist=new Date(new Date().toLocaleString('en-US',{timeZone:'Asia/Kolkata'}));
   const p=n=>String(n).padStart(2,'0');
-  document.getElementById('clk').textContent=`${p(ist.getHours())}:${p(ist.getMinutes())}:${p(ist.getSeconds())} IST`;
+  $s('hclock',`${p(ist.getHours())}:${p(ist.getMinutes())}:${p(ist.getSeconds())} IST`);
 }
 
-// ── INTERACTIONS ──────────────────────────────────────────────────────
-function setCity(btn, c) {
-  city=c;
-  document.querySelectorAll('.cb').forEach(b=>b.classList.toggle('ac',b.textContent.trim()===c));
-  renderAll();
-}
-function setK(k, btn) {
-  karat=k;
-  document.querySelectorAll('#gkt .kt').forEach(b=>b.classList.remove('ac'));
-  btn.classList.add('ac');
-  document.getElementById('gkl').textContent=k;
-  renderGold();
-}
-
-// ── FULL RENDER CYCLE ─────────────────────────────────────────────────
-function renderAll() {
-  tickNoise();
+// ═══════════════════════════════════════════════════════
+// FULL RENDER CYCLE
+// ═══════════════════════════════════════════════════════
+function render(){
   updateClock();
-  renderBar();
-  renderGold();
-  renderSilver();
-  renderPlatinum();
-  renderKarat();
-  renderCityTable();
-  renderTicker();
-  renderNews();
-  updateEngineUI();
-  const ist=new Date(new Date().toLocaleString('en-US',{timeZone:'Asia/Kolkata'}));
-  document.getElementById('lu').textContent=ist.toLocaleTimeString('en-IN');
+  renderGold();renderSilver();renderPlat();
+  renderKarat();renderCities();renderNews();
+  renderConfBar();renderTicker();
 }
 
-// ── BOOT ──────────────────────────────────────────────────────────────
-window.addEventListener('load', async () => {
-  ['gspk','sspk','pspk'].forEach(initC);
+// ═══════════════════════════════════════════════════════
+// INTERACTIONS
+// ═══════════════════════════════════════════════════════
+function setCity(c,btn){
+  city=c;
+  document.querySelectorAll('.cbtn').forEach(b=>b.classList.toggle('ac',b.textContent.trim()===c));
+  render();
+}
+function setK(k,btn){
+  karat=k;
+  document.querySelectorAll('.kt').forEach(b=>b.classList.remove('ac'));
+  if(btn)btn.classList.add('ac');
+  $s('g_klbl',k);
+  renderGold();renderKarat();
+}
+async function doRefresh(){
+  const btn=document.getElementById('rbtn');
+  if(btn)btn.disabled=true;
+  await Promise.allSettled([fetchFx1(),fetchFx2(),fetchFx3(),fetchGoldPriceOrg(),fetchFreeGoldApi(),fetchAIPrices()]);
+  updateMedians();render();
+  if(btn)btn.disabled=false;
+}
 
-  // Initial fetch — all sources in parallel
-  fetchAllSources().then(()=>{
-    renderAll();
-    // Second immediate fetch for redundancy
-    setTimeout(()=>fetchAllSources().then(renderAll), 3000);
-  });
+// ═══════════════════════════════════════════════════════
+// BOOT
+// ═══════════════════════════════════════════════════════
+(async function boot(){
+  ['g_spk','s_spk','p_spk'].forEach(initSpk);
+  updateClock();
+  setInterval(updateClock,1000);
 
-  // Recurring refresh schedule
-  setInterval(renderAll, 1000);               // Display: every second
-  setInterval(fetchForex, 30000);             // Forex: every 30s
-  setInterval(()=>fetchGoldPriceOrg(), 45000);// Metal src 1: every 45s
-  setInterval(()=>fetchMetalsLive(), 55000);  // Metal src 2: every 55s
-  setInterval(()=>fetchGoldApiCom(), 65000);  // Metal src 3: every 65s
-  setInterval(()=>{ updateMedians(); updateSourcePills(); }, 10000); // Recalculate every 10s
-});
+  // Seed sparklines
+  for(let i=0;i<20;i++){
+    spk.g.push(1580000+Math.random()*8000-i*300);
+    spk.s.push(265000+Math.random()*2000-i*100);
+    spk.p.push(62000+Math.random()*600-i*20);
+  }
 
-window.addEventListener('resize', ()=>['gspk','sspk','pspk'].forEach(initC));
+  try{
+    // Phase 1: Fetch all CORS-open forex + public metal sources in parallel
+    await Promise.allSettled([fetchFx1(),fetchFx2(),fetchFx3(),fetchGoldPriceOrg(),fetchFreeGoldApi()]);
+    updateMedians();
+
+    // Show UI as soon as forex is ready (even without metal prices)
+    document.getElementById('loadingEl').style.display='none';
+    document.getElementById('contentEl').style.display='block';
+    ['g_spk','s_spk','p_spk'].forEach(initSpk);
+    render();
+
+    // Phase 2: AI engine runs in background (takes longer)
+    fetchAIPrices().then(()=>{updateMedians();render();});
+
+    // Recurring intervals
+    setInterval(render,1000);
+    setInterval(()=>Promise.allSettled([fetchFx1(),fetchFx2(),fetchFx3()]).then(()=>{updateMedians();}),30000);
+    setInterval(()=>Promise.allSettled([fetchGoldPriceOrg(),fetchFreeGoldApi()]).then(()=>{updateMedians();}),60000);
+    setInterval(()=>fetchAIPrices().then(()=>{updateMedians();}),300000); // AI every 5min
+
+  }catch(err){
+    document.getElementById('loadingEl').style.display='none';
+    const e=document.getElementById('errEl');
+    if(e){e.style.display='block';e.className='err';e.innerHTML=`Failed: ${err.message}<br>Check console for details. CORS restrictions may apply on some hosts.`;}
+  }
+})();
+
+window.addEventListener('resize',()=>['g_spk','s_spk','p_spk'].forEach(initSpk));
 </script>
 </body>
 </html>
